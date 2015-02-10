@@ -5,8 +5,10 @@ import geo.basic.IBoundingBoxFix;
 import geo.basic.IPoint;
 
 public final class BoundingBox implements IBoundingBox {
+    
     private double xMin, xMax, yMin, yMax;
 
+    @Override
     public void update(final IPoint... points) {
         xMin = points[0].getX();
         xMax = points[0].getX();
@@ -20,6 +22,7 @@ public final class BoundingBox implements IBoundingBox {
         }
     }
 
+    @Override
     public boolean collideWith(final IBoundingBoxFix other) {
         if (xMin > other.getXMax() || xMax < other.getXMin()) {
             return false;
@@ -50,6 +53,4 @@ public final class BoundingBox implements IBoundingBox {
         return yMax;
     }
 
-
-   
 }
