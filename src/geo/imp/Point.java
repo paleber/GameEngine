@@ -2,8 +2,8 @@ package geo.imp;
 
 import java.util.Locale;
 
-import geo.IPoint;
-import geo.IVector;
+import geo.basic.IPoint;
+import geo.basic.IVector;
 
 public final class Point implements IPoint {
 

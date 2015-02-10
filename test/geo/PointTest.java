@@ -1,6 +1,8 @@
 package geo;
 
 import static org.junit.Assert.assertEquals;
+import geo.basic.IPoint;
+import geo.basic.IVector;
 import geo.imp.Point;
 import geo.imp.Vector;
 

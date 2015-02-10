@@ -1,4 +1,4 @@
-package geo;
+package geo.basic;
 
 public interface IPointFix {
 
