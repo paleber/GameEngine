@@ -1,15 +1,15 @@
 package geo;
 
 public interface IVectorFix {
-	
-	double getX();
 
-	double getY();
+    double getX();
 
-	double getLength();
+    double getY();
 
-	void setLength(double length);
-	
-	double getAngle();
-	
+    double getLength();
+
+    void setLength(double length);
+
+    double getAngle();
+
 }

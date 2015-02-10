@@ -2,12 +2,12 @@ package geo;
 
 public interface IPointFix {
 
-	double getX();
-	
-	double getY();
+    double getX();
 
-	double distanceTo(IPoint other);
+    double getY();
 
-	double distanceSquareTo(IPoint other);
-	
+    double distanceTo(IPoint other);
+
+    double distanceSquareTo(IPoint other);
+
 }
