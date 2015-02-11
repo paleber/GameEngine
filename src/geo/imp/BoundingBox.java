@@ -1,14 +1,13 @@
 package geo.imp;
 
-import geo.basic.IBoundingBox;
-import geo.basic.IBoundingBoxFix;
+import geo.basic.IBoundingBoxCollider.IBoundingBox;
 import geo.basic.IPoint;
 
-public final class BoundingBox implements IBoundingBox {
+@Deprecated
+public final class BoundingBox  {
     
     private double xMin, xMax, yMin, yMax;
 
-    @Override
     public void update(final IPoint... points) {
         xMin = points[0].getX();
         xMax = points[0].getX();
@@ -22,8 +21,7 @@ public final class BoundingBox implements IBoundingBox {
         }
     }
 
-    @Override
-    public boolean collideWith(final IBoundingBoxFix other) {
+    public boolean collideWith(final IBoundingBox other) {
         if (xMin > other.getXMax() || xMax < other.getXMin()) {
             return false;
         }
@@ -33,22 +31,19 @@ public final class BoundingBox implements IBoundingBox {
         return true;
     }
 
-    @Override
     public double getXMin() {
         return xMin;
     }
 
-    @Override
     public double getXMax() {
         return xMax;
     }
 
-    @Override
     public double getYMin() {
         return yMin;
     }
 
-    @Override
+  
     public double getYMax() {
         return yMax;
     }

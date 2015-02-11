@@ -2,6 +2,18 @@ package geo.basic;
 
 public interface IBoundingBoxCollider {
 
-    IBoundingBoxFix getBoundingBox();
-    
+    public interface IBoundingBox {
+
+        double getXMin();
+
+        double getXMax();
+
+        double getYMin();
+
+        double getYMax();
+
+    }
+
+    IBoundingBox getBoundingBox();
+
 }

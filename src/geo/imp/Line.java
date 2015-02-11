@@ -1,16 +1,36 @@
 package geo.imp;
 
-import geo.basic.IBoundingBox;
-import geo.basic.IBoundingBoxFix;
 import geo.basic.IPoint;
 import geo.shape.ILine;
 
-public class Line implements ILine {
+public final class Line implements ILine {
 
     private IPoint start;
     private IPoint end;
 
-    private final IBoundingBox bb = new BoundingBox();
+    private final IBoundingBox bb = new IBoundingBox() {
+
+        @Override
+        public double getXMin() {
+            return Math.min(start.getX(), end.getX());
+        }
+
+        @Override
+        public double getXMax() {
+            return Math.max(start.getX(), end.getX());
+        }
+
+        @Override
+        public double getYMin() {
+            return Math.min(start.getY(), end.getY());
+        }
+
+        @Override
+        public double getYMax() {
+            return Math.max(start.getY(), end.getY());
+        }
+
+    };
 
     @Override
     public IPoint getStart() {
@@ -26,11 +46,10 @@ public class Line implements ILine {
     public void setPoints(IPoint start, IPoint end) {
         this.start = start;
         this.end = end;
-        bb.update(start, end);
     }
 
     @Override
-    public IBoundingBoxFix getBoundingBox() {
+    public IBoundingBox getBoundingBox() {
         return bb;
     }
 
