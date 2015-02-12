@@ -8,8 +8,10 @@ public final class Line implements ILine {
     private IPoint start;
     private IPoint end;
 
-    private final IBoundingBox bb = new IBoundingBox() {
-
+    private final IBoundingBox bb = new BoundingBox();
+    
+    private final class BoundingBox implements IBoundingBox {
+        
         @Override
         public double getXMin() {
             return Math.min(start.getX(), end.getX());
@@ -29,8 +31,8 @@ public final class Line implements ILine {
         public double getYMax() {
             return Math.max(start.getY(), end.getY());
         }
-
-    };
+        
+    }
 
     @Override
     public IPoint getStart() {

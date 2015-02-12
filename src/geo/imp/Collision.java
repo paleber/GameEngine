@@ -5,8 +5,9 @@ import geo.basic.IBoundingBoxCollider.IBoundingBox;
 
 public final class Collision {
 
-    @SuppressWarnings("unused")
-    private static boolean checkBoundingBoxCollides(IBoundingBoxCollider bbc1,
+    private Collision() {}
+    
+    public static boolean checkBoundingBoxCollides(IBoundingBoxCollider bbc1,
             IBoundingBoxCollider bbc2) {
 
         IBoundingBox bb1 = bbc1.getBoundingBox();
