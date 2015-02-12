@@ -14,6 +14,12 @@ public class Polygon implements IPolygon {
     private IPoint[] points;
     private ILine[] edges;
 
+    private IPoint xMin;
+    private IPoint xMax;
+    private IPoint yMin;
+    private IPoint yMax;
+    private final IBoundingBox bb = new BoundingBox();
+
     @Override
     public int getNumPoints() {
         return points.length;
@@ -105,7 +111,7 @@ public class Polygon implements IPolygon {
         return bb;
     }
 
-    private final IBoundingBox bb = new IBoundingBox() {
+    private final class BoundingBox implements IBoundingBox {
 
         @Override
         public double getXMin() {
@@ -126,13 +132,7 @@ public class Polygon implements IPolygon {
         public double getYMax() {
             return yMax.getY();
         }
-
-    };
-
-    private IPoint xMin;
-    private IPoint xMax;
-    private IPoint yMin;
-    private IPoint yMax;
+    }
 
     private void calcBoundingBox() {
         xMin = points[0];
@@ -159,5 +159,5 @@ public class Polygon implements IPolygon {
             }
         }
     }
-    
+
 }
