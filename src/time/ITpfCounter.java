@@ -1,7 +1,9 @@
 package time;
 
-public interface ICounterTPF {
+public interface ITpfCounter {
 
+    void init();
+    
     void count();
     
     double getTPF();
