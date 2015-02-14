@@ -1,4 +1,4 @@
-package time;
+package time.source;
 
 public interface ITimeSource {
 

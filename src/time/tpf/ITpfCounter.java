@@ -1,4 +1,4 @@
-package time;
+package time.tpf;
 
 public interface ITpfCounter {
 
