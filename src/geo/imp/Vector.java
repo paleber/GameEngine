@@ -57,10 +57,9 @@ final class Vector implements IVector {
     }
 
     @Override
-    public void setAngle(double degree, double length) {
+    public void setAngle(double degree) {
         angleRadian = Math.toRadians(degree);
         limitAngle();
-        this.length = length;
     }
 
     @Override

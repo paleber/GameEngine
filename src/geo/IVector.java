@@ -8,20 +8,20 @@ public interface IVector {
 
     void stretchBetween(IPoint from, IPoint to);
 
-    void setAngle(double degree, double length);
-
-    void swap();
-
-    void rotate(double degree);
-
     double getX();
 
     double getY();
 
-    double getLength();
+    void setAngle(double degree);
+
+    double getAngle();
 
     void setLength(double length);
 
-    double getAngle();
+    double getLength();
+
+    void swap();
+
+    void rotate(double degree);
 
 }

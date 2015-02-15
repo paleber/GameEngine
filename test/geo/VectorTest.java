@@ -39,19 +39,19 @@ public class VectorTest {
 
     @Test
     public void angle() {
-        v.setAngle(0, 1);
+        v.setAngle(0);
         assertEquals(0, v.getAngle(), DELTA);
 
-        v.setAngle(-270, 1);
+        v.setAngle(-270);
         assertEquals(90, v.getAngle(), DELTA);
 
-        v.setAngle(360, 1);
+        v.setAngle(360);
         assertEquals(0, v.getAngle(), DELTA);
     }
 
     @Test
     public void swap() {
-        v.setAngle(90, 1);
+        v.setAngle(90);
         v.swap();
         assertEquals(270, v.getAngle(), DELTA);
     }
@@ -70,7 +70,7 @@ public class VectorTest {
 
     @Test
     public void rotate() {
-        v.setAngle(0, 1);
+        v.setAngle(0);
         v.rotate(90);
         assertEquals(90, v.getAngle(), DELTA);
     }
