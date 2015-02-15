@@ -1,6 +1,6 @@
-package geo.basic;
+package geo;
 
-public interface IVector extends IVectorFix {
+public interface IVector {
 
     void set(double x, double y);
 
@@ -13,5 +13,15 @@ public interface IVector extends IVectorFix {
     void swap();
 
     void rotate(double degree);
+
+    double getX();
+
+    double getY();
+
+    double getLength();
+
+    void setLength(double length);
+
+    double getAngle();
 
 }

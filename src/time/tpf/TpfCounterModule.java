@@ -1,10 +1,9 @@
 package time.tpf;
 
-import javax.inject.Inject;
+import com.google.inject.AbstractModule;
+import com.google.inject.Inject;
 
 import time.source.ITimeSource;
-
-import com.google.inject.AbstractModule;
 
 public final class TpfCounterModule extends AbstractModule {
 
@@ -15,15 +14,15 @@ public final class TpfCounterModule extends AbstractModule {
 
 }
 
-class TpfCounter implements ITpfCounter {
+final class TpfCounter implements ITpfCounter {
 
     private long last;
     private double tpf;
-    
-    private final ITimeSource timeSource;    
+
+    private final ITimeSource timeSource;
 
     @Inject
-    public TpfCounter(ITimeSource timeSource) {
+    public TpfCounter(final ITimeSource timeSource) {
         this.timeSource = timeSource;
     }
 

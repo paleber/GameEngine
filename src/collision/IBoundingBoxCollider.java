@@ -1,4 +1,4 @@
-package geo.basic;
+package collision;
 
 public interface IBoundingBoxCollider {
 

@@ -2,10 +2,10 @@ package geo.imp;
 
 import java.util.Locale;
 
-import geo.basic.IPoint;
-import geo.basic.IVector;
+import geo.IPoint;
+import geo.IVector;
 
-public final class Point implements IPoint {
+final class Point implements IPoint {
 
     private double x = 0;
     private double y = 0;
@@ -68,7 +68,6 @@ public final class Point implements IPoint {
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "(%.3f|%.3f)", getX(), getY());
-
     }
 
 }

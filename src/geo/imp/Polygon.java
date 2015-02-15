@@ -1,15 +1,13 @@
 package geo.imp;
 
-import geo.basic.IPoint;
-import geo.basic.IPointFix;
-import geo.basic.IVector;
-import geo.shape.ILine;
-import geo.shape.ILineFix;
-import geo.shape.IPolygon;
+import geo.ILine;
+import geo.IPoint;
+import geo.IPolygon;
+import geo.IVector;
 
 import java.util.Iterator;
 
-public class Polygon implements IPolygon {
+class Polygon implements IPolygon {
 
     private IPoint[] points;
     private ILine[] edges;
@@ -31,13 +29,13 @@ public class Polygon implements IPolygon {
     }
 
     @Override
-    public ILineFix getEdge(int index) {
+    public ILine getEdge(int index) {
         return edges[index];
     }
 
     @Override
-    public Iterator<IPointFix> getPointIterator() {
-        return new Iterator<IPointFix>() {
+    public Iterator<IPoint> getPointIterator() {
+        return new Iterator<IPoint>() {
 
             private int index = 0;
 
@@ -47,7 +45,7 @@ public class Polygon implements IPolygon {
             }
 
             @Override
-            public IPointFix next() {
+            public IPoint next() {
                 return points[index++];
             }
 
@@ -56,9 +54,9 @@ public class Polygon implements IPolygon {
     }
 
     @Override
-    public Iterator<ILineFix> getEdgeIterator() {
+    public Iterator<ILine> getEdgeIterator() {
 
-        return new Iterator<ILineFix>() {
+        return new Iterator<ILine>() {
 
             private int index = 0;
 
@@ -68,7 +66,7 @@ public class Polygon implements IPolygon {
             }
 
             @Override
-            public ILineFix next() {
+            public ILine next() {
                 return edges[index++];
             }
 
@@ -76,7 +74,7 @@ public class Polygon implements IPolygon {
     }
 
     @Override
-    public IPointFix getPoint(final int index) {
+    public IPoint getPoint(final int index) {
         return points[index];
     }
 

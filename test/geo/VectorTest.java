@@ -1,20 +1,23 @@
 package geo;
 
 import static org.junit.Assert.assertEquals;
-import geo.basic.IPoint;
-import geo.basic.IVector;
-import geo.imp.Point;
-import geo.imp.Vector;
+import geo.imp.GeoModule;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 public class VectorTest {
 
+    private static final Injector INJECTOR = Guice
+            .createInjector(new GeoModule());
+    
     private static final double DELTA = 1e-9;
 
-    IVector v = new Vector();
-    IVector u = new Vector();
+    IVector v = INJECTOR.getInstance(IVector.class);
+    IVector u = INJECTOR.getInstance(IVector.class);
 
     @Before
     public void setUp() {
@@ -74,9 +77,9 @@ public class VectorTest {
 
     @Test
     public void stretchBetween() {
-        IPoint p = new Point();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(-1, -1);
-        IPoint q = new Point();
+        IPoint q = INJECTOR.getInstance(IPoint.class);
         q.set(2, 1);
         v.stretchBetween(p, q);
 

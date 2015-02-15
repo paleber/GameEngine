@@ -1,9 +1,9 @@
 package geo.imp;
 
-import geo.basic.IPoint;
-import geo.shape.ILine;
+import geo.ILine;
+import geo.IPoint;
 
-public final class Line implements ILine {
+final class Line implements ILine {
 
     private IPoint start;
     private IPoint end;

@@ -2,10 +2,10 @@ package geo.imp;
 
 import java.util.Locale;
 
-import geo.basic.IPoint;
-import geo.basic.IVector;
+import geo.IPoint;
+import geo.IVector;
 
-public final class Vector implements IVector {
+final class Vector implements IVector {
 
     private static final double FULL_ROTATION = 2 * Math.PI;
 

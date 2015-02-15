@@ -1,15 +1,14 @@
-package geo.imp;
+package collision;
 
-import geo.basic.IBoundingBoxCollider;
-import geo.basic.IBoundingBoxCollider.IBoundingBox;
+import collision.IBoundingBoxCollider.IBoundingBox;
 
 public final class Collision {
 
     private Collision() {
     }
 
-    public static boolean checkBoundingBoxCollides(IBoundingBoxCollider bbc1,
-            IBoundingBoxCollider bbc2) {
+    public static boolean checkBoundingBoxCollides(
+            final IBoundingBoxCollider bbc1, final IBoundingBoxCollider bbc2) {
 
         IBoundingBox bb1 = bbc1.getBoundingBox();
         IBoundingBox bb2 = bbc2.getBoundingBox();

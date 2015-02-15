@@ -1,20 +1,23 @@
 package geo;
 
 import static org.junit.Assert.assertEquals;
-import geo.basic.IPoint;
-import geo.basic.IVector;
-import geo.imp.Point;
-import geo.imp.Vector;
+import geo.imp.GeoModule;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 public class PointTest {
 
+    private static final Injector INJECTOR = Guice
+            .createInjector(new GeoModule());
+    
     private static final double DELTA = 1e-9;
 
-    private IPoint p = new Point();
-    private IPoint q = new Point();
+    private IPoint p = INJECTOR.getInstance(IPoint.class);
+    private IPoint q = INJECTOR.getInstance(IPoint.class);;
 
     @Before
     public void setUp() {
@@ -43,7 +46,7 @@ public class PointTest {
 
     @Test
     public void move() {
-        IVector v = new Vector();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.set(2, 1);
         p.move(v);
         assertEquals(5, p.getX(), DELTA);

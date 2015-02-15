@@ -1,9 +1,10 @@
 package sprite;
 
-import geo.basic.IPoint;
-import geo.shape.IPolygonFix;
+import collision.IBoundingBoxCollider;
+import geo.IPoint;
+import geo.IPolygon;
 
-public interface IBall {
+public interface IBall extends IBoundingBoxCollider {
 
     void init(IPoint mid, double angle, double speed);
     
@@ -15,5 +16,5 @@ public interface IBall {
     
     void getDirection();
     
-    IPolygonFix getPolygon();
+    IPolygon getPolygon();
 }
