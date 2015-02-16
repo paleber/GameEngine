@@ -1,25 +1,22 @@
 package sprite;
 
-import collision.IBoundingBoxCollider;
 import geo.ICircle;
-import geo.ILine;
 import geo.IPoint;
 import geo.IPolygon;
+import time.tpf.ITpfCounter;
+import collision.IBoundingBoxCollider;
 
 public interface IBall extends IBoundingBoxCollider {
 
-    void init(IPoint mid, double angle, double speed);
-
-    // TPF Counter über DI-Singleton
+    void init(IPoint mid, double angle, double speed, ITpfCounter tpfCounter);
 
     void move();
 
-  //  void collideWith(ICircle circle)
-    
     void collideWith(ICircle circle);
-    
+
     void collideWith(IPolygon poly);
-    
-    IPolygon getPolygon(); // TODO, make immutable, only for collisionDetection and Paint
+
+    ICircle getCircle(); // TODO, make immutable, only for collisionDetection
+                          // and Paint
 
 }
