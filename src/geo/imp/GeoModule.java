@@ -1,5 +1,6 @@
 package geo.imp;
 
+import geo.ICircle;
 import geo.ILine;
 import geo.IPoint;
 import geo.IPolygon;
@@ -15,6 +16,7 @@ public final class GeoModule extends AbstractModule{
         bind(IVector.class).to(Vector.class);
         bind(ILine.class).to(Line.class);
         bind(IPolygon.class).to(Polygon.class);
+        bind(ICircle.class).to(Circle.class);
     }
 
 }

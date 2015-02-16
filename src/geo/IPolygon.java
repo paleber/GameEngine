@@ -4,13 +4,11 @@ import java.util.Iterator;
 
 import collision.IBoundingBoxCollider;
 
-public interface IPolygon extends IBoundingBoxCollider {
+public interface IPolygon extends IBoundingBoxCollider, IShape {
 
     void setPoints(IPoint[] point);
 
-    void move(IVector v);
-
-    void rotateAround(final double angleDeg, final IPoint pivot);
+    
 
     int getNumPoints();
 
