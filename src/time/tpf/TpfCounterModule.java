@@ -34,7 +34,7 @@ final class TpfCounter implements ITpfCounter {
     @Override
     public void count() {
         long cur = timeSource.getNanoTime();
-        tpf = (cur - last) * 1e-6;
+        tpf = (cur - last) * 1e-9;
         last = cur;
     }
 
