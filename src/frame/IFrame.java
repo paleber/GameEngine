@@ -37,8 +37,8 @@ final class Frame extends JFrame implements IFrame, ITrigger {
 
     public Frame() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(DEFAULT_SIZE);
-        setMinimumSize(MINIMUM_SIZE);
+        getContentPane().setPreferredSize(DEFAULT_SIZE);
+        getContentPane().setMinimumSize(MINIMUM_SIZE);
         pack();
         setLocationRelativeTo(null);
 

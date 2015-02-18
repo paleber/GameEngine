@@ -7,6 +7,8 @@ import geo.IVector;
 
 import java.util.Iterator;
 
+import collision.IBoundingBox;
+
 class Polygon implements IPolygon {
 
     private IPoint[] points;
@@ -104,7 +106,7 @@ class Polygon implements IPolygon {
         calcBoundingBox();
     }
 
-    @Override
+  
     public IBoundingBox getBoundingBox() {
         return bb;
     }

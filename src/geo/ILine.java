@@ -1,8 +1,7 @@
 package geo;
 
-import collision.IBoundingBoxCollider;
 
-public interface ILine extends IBoundingBoxCollider {
+public interface ILine  {
 
     IPoint getStart();
 

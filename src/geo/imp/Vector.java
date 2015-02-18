@@ -2,6 +2,7 @@ package geo.imp;
 
 import java.util.Locale;
 
+import geo.ILine;
 import geo.IPoint;
 import geo.IVector;
 
@@ -88,4 +89,37 @@ final class Vector implements IVector {
     public String toString() {
         return String.format(Locale.ENGLISH, "<%.3f|%.3f>", getX(), getY());
     }
+
+    @Override
+    public double dotProduct(IVector other) {
+        return getX() * other.getX() + getY() * other.getY();
+    }
+
+    @Override
+    public void reflect(ILine l) {
+
+        IVector n = new Vector();
+        n.stretchBetween(l.getStart(), l.getEnd());
+        n.rotate(90);
+        n.setLength(1);
+        
+        double a = 2 * dotProduct(n);
+        
+        n.multScalar(a);
+        
+        set(getX() - n.getX(), getY() - n.getY());
+        
+    }
+    
+    
+    
+
+
+    @Override
+    public void multScalar(double scalar) {
+        length *= scalar;
+        
+    }
+    
+    
 }

@@ -24,4 +24,10 @@ public interface IVector {
 
     void rotate(double degree);
 
+    double dotProduct(IVector other);
+
+    void reflect(ILine l);
+
+    void multScalar(double scalar);
+    
 }

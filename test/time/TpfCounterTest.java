@@ -34,7 +34,7 @@ public class TpfCounterTest {
         tpfCounter.init();
         timeSource.setNanoTime((long) 2e9);
         tpfCounter.count();
-        assertEquals(1000, tpfCounter.getTPF(), 1e-9);
+        assertEquals(1, tpfCounter.getTPF(), 1e-9);
     }
 
 }

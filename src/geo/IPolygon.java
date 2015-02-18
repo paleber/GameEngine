@@ -2,9 +2,7 @@ package geo;
 
 import java.util.Iterator;
 
-import collision.IBoundingBoxCollider;
-
-public interface IPolygon extends IBoundingBoxCollider, IShape {
+public interface IPolygon extends IShape {
 
     void setPoints(IPoint[] point);
 

@@ -2,6 +2,7 @@ package geo.imp;
 
 import geo.ILine;
 import geo.IPoint;
+import collision.IBoundingBox;
 
 final class Line implements ILine {
 
@@ -50,7 +51,7 @@ final class Line implements ILine {
         this.end = end;
     }
 
-    @Override
+    
     public IBoundingBox getBoundingBox() {
         return bb;
     }

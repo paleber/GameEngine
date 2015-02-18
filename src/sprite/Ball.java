@@ -1,31 +1,38 @@
 package sprite;
 
-import time.tpf.ITpfCounter;
 import geo.ICircle;
+import geo.ILine;
 import geo.IPoint;
 import geo.IPolygon;
 import geo.IVector;
 import geo.imp.GeoModule;
+
+import java.util.Iterator;
+
+import time.tpf.ITpfCounter;
+import collision.Collision;
+import collision.IBoundingBox;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 public class Ball implements IBall {
 
-    private static final Injector INJECTOR = Guice.createInjector(new GeoModule());
-    
+    private static final Injector INJECTOR = Guice
+            .createInjector(new GeoModule());
+
     private final IBoundingBox bb = new BoundingBox();
-    
+
     private ICircle circle;
-    
-    private static final double RADIUS = 5;
-    
-    private final IVector direction = INJECTOR.getInstance(IVector.class);
-    
-    private static final double SPEED = 100;
-    
+
+    private static final double RADIUS = 7;
+
+    private final IVector dir = INJECTOR.getInstance(IVector.class);
+
+    private static final double SPEED = 250;
+
     private ITpfCounter tpfCounter;
-    
+
     private final class BoundingBox implements IBoundingBox {
 
         @Override
@@ -47,28 +54,29 @@ public class Ball implements IBall {
         public double getYMax() {
             return circle.getMid().getY() + circle.getRadius();
         }
-        
+
     }
-    
+
     @Override
     public IBoundingBox getBoundingBox() {
         return bb;
     }
 
     // TODO use assisted inject
-    @Override 
-    public void init(IPoint mid, double degree, double speed, final ITpfCounter tpfCounter) {
+    @Override
+    public void init(IPoint mid, double degree, double speed,
+            final ITpfCounter tpfCounter) {
         circle = INJECTOR.getInstance(ICircle.class);
         circle.setMid(mid);
         circle.setRadius(RADIUS);
         this.tpfCounter = tpfCounter;
-        direction.setAngle(degree);
+        dir.setAngle(degree);
     }
 
     @Override
     public void move() {
-        direction.setLength(SPEED * tpfCounter.getTPF());
-        circle.move(direction);
+        dir.setLength(SPEED * tpfCounter.getTPF());
+        circle.move(dir);
     }
 
     @Override
@@ -79,12 +87,41 @@ public class Ball implements IBall {
 
     @Override
     public void collideWith(IPolygon poly) {
-        // TODO Auto-generated method stub
+        System.out.println("Collision - " + System.currentTimeMillis());
+        
+        Iterator<ILine> it = poly.getEdgeIterator();
+        while(it.hasNext()) {
+            System.out.println("außen");
+            ILine l = it.next();
+            if(Collision.check(l, circle)) {
+                
+                System.out.println("innen");
+                
+                // zurück
+                dir.swap();
+              //  circle.move(dir);
+                dir.swap();
+                
+                // reflect
+                dir.reflect(l);
+                
+               
+                circle.move(dir);
+                
+                
+            }
+            
+            
+        }
+        
+        
+        // TODO Suche lediglich nächste Linie oder Punkt
+        
 
     }
 
     @Override
-    public ICircle getCircle() {
+    public ICircle getShape() {
         return circle;
     }
 

@@ -1,13 +1,10 @@
 package geo;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import geo.imp.GeoModule;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import collision.IBoundingBoxCollider.IBoundingBox;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -34,13 +31,13 @@ public class LineTest {
         assertTrue(l.getEnd() == q);
     }
 
-    @Test
+    /*@Test
     public void boundingBox() {
         IBoundingBox bb = l.getBoundingBox();
         assertEquals(2, bb.getXMin(), 0);
         assertEquals(4, bb.getXMax(), 0);
         assertEquals(1, bb.getYMin(), 0);
         assertEquals(5, bb.getYMax(), 0);
-    }
+    } */
 
 }

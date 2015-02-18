@@ -85,6 +85,14 @@ public class VectorTest {
 
         assertEquals(3, v.getX(), DELTA);
         assertEquals(2, v.getY(), DELTA);
-
+    }
+    
+    @Test
+    public void dotProduct() {
+        IVector u = INJECTOR.getInstance(IVector.class);
+        u.set(3, 4);
+        IVector v = INJECTOR.getInstance(IVector.class);
+        v.set(-2, 1);
+        assertEquals(-2, u.dotProduct(v), DELTA);
     }
 }
