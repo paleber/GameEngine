@@ -1,16 +1,19 @@
 package basic;
 
 public interface IPoint {
-    
+
     void initWithXY(double x, double y);
-    void initByCopy(IPoint other);
+
+    void initByCopying(IPoint other);
 
     double getX();
+
     double getY();
-    
+
     void move(IVector movement);
-    void rotate(IPoint pivot);
-    
+
+    void rotate(IPoint pivot, double radian);
+
     String toString();
-   
+
 }
