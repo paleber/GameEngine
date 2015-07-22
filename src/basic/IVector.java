@@ -4,7 +4,7 @@ public interface IVector {
 
     void initWithXY(double x, double y);
 
-    void initWithAngle(double radian, double length);
+    void initWithAngleAndLength(double radian, double length);
 
     void initByCopying(IVector other);
 

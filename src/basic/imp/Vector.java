@@ -19,9 +19,10 @@ final class Vector implements IVector {
     }
 
     @Override
-    public void initWithAngle(double radian, double length) {
+    public void initWithAngleAndLength(double radian, double length) {
         this.radian = radian;
         this.length = length;
+        limitAngle();
     }
 
     @Override
