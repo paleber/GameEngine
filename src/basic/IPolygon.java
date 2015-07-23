@@ -1,6 +1,6 @@
 package basic;
 
-public interface IPolygon {
+public interface IPolygon extends Iterable<IPoint>{
 
 	void initWithPoints(IPoint... points);
 	
@@ -8,10 +8,7 @@ public interface IPolygon {
 	
 	void move(IVector movement);
 	
-	void rotate(IPoint pivot);
+	void rotate(IPoint pivot, double radian);
 	
-	void getPointIterator();
-	
-	void getEdgeIterator();
-	
+	//int getNumberPoints();
 }
