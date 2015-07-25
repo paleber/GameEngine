@@ -1,10 +1,13 @@
 package sprite;
 
-public interface ISpriteNew {
+public interface ISpriteNew extends ICollider {
 
     void initWithCircle();
     
     void initWithPolygon();
+    
+    
+    
     
     void setSpeed();
     
@@ -12,7 +15,8 @@ public interface ISpriteNew {
     
     void move();
     
-    boolean checkCollision(ISpriteNew other);
+
+    void checkCollision(ICollider collider);
     
     void executeCollision();
     
