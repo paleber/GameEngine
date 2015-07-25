@@ -7,6 +7,7 @@ import java.util.List;
 import basic.IPoint;
 import basic.IPolygon;
 import basic.IVector;
+import sprite.ICollider;
 
 final class Polygon implements IPolygon {
 
@@ -30,14 +31,14 @@ final class Polygon implements IPolygon {
         }
     }
 
-    @Override
+    
     public void move(IVector movement) {
         for(IPoint p: points) {
             p.move(movement);
         }
     }
 
-    @Override
+    
     public void rotate(IPoint pivot, double radian) {
         for(IPoint p: points) {
             p.rotate(pivot, radian);
@@ -62,4 +63,70 @@ final class Polygon implements IPolygon {
             }
         };
     }
+
+	@Override
+	public void initWithCircle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initWithPolygon() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSpeed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setRotation() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkCollision(ICollider collider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void executeCollision() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getXMin() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYMin() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getXMax() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYMax() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
