@@ -1,11 +1,12 @@
-package sprite;
+package test.sprite;
 
-public interface ISpriteNew extends ICollider {
+import test.collider.ICollider;
 
-    void initWithCircle();
+public interface ISprite<T extends ICollider>{
+
+    void init(T collider);
     
-    void initWithPolygon();
-    
+    T getCollider();
     
     
     

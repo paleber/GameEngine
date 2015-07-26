@@ -45,7 +45,7 @@ final class Polygon implements IPolygon {
         }
     }
 
-    @Override
+    
     public Iterator<IPoint> iterator() {
         
         return new Iterator<IPoint>() {
@@ -64,67 +64,66 @@ final class Polygon implements IPolygon {
         };
     }
 
-	@Override
+
 	public void initWithCircle() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void initWithPolygon() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void setSpeed() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void setRotation() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void move() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void checkCollision(ICollider collider) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void executeCollision() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public int getXMin() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public int getYMin() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getXMax() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getYMax() {
 		// TODO Auto-generated method stub
 		return 0;

@@ -1,12 +1,14 @@
 package basic;
 
-import sprite.ISpriteNew;
-
-public interface IPolygon extends Iterable<IPoint>, ISpriteNew{
+public interface IPolygon {
 
 	void initWithPoints(IPoint... points);
 	
 	void initByCopying(IPolygon other);
+	
+	int getNumberPoints();
+	
+	IPoint getPoint();
 	
 	//void move(IVector movement);
 	
