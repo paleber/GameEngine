@@ -18,8 +18,6 @@ public interface IPoint extends IShape {
 
     //String toString();
 
-    void addParent(IShape s);
-    
-    void removeParent(IShape s);
+
     
 }

@@ -2,8 +2,6 @@ package basic;
 
 public interface IShape {
 
-	
-	
 	void move(IVector v);
 
 	void rotate(IPoint pivot, double radian);
@@ -15,9 +13,5 @@ public interface IShape {
 	double getXMax();
 
 	double getYMax();
-
-	//<void addParent(IShape<?> parent); // nicht sichtbar
-
-	void update(); // nicht sichtbar
 
 }

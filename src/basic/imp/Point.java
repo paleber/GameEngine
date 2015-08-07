@@ -1,14 +1,17 @@
 package basic.imp;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import basic.IPoint;
 import basic.IVector;
-import basic.IShape;
 
 final class Point implements IPoint {
 
     private double x, y;
+    
+    private final List<IComplexShape> parents = new ArrayList<>();
     
     @Override
     public void initWithXY(double x, double y) {
@@ -36,6 +39,7 @@ final class Point implements IPoint {
     public void move(IVector movement) {
         x += movement.getX();
         y += movement.getY();
+        updateParents();
     }
 
     @Override
@@ -51,6 +55,7 @@ final class Point implements IPoint {
 
         x = xn + pivot.getX();
         y = yn + pivot.getY();
+        updateParents();
     }
 
     
@@ -60,50 +65,38 @@ final class Point implements IPoint {
     }
 
 
-
 	@Override
 	public double getXMin() {
-		// TODO Auto-generated method stub
-		return 0;
+		return x;
 	}
 
 	@Override
 	public double getYMin() {
-		// TODO Auto-generated method stub
-		return 0;
+		return y;
 	}
 
 	@Override
 	public double getXMax() {
-		// TODO Auto-generated method stub
-		return 0;
+		return x;
 	}
 
 	@Override
 	public double getYMax() {
-		// TODO Auto-generated method stub
-		return 0;
+		return y;
 	}
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
+	public void addParent(IComplexShape parent) {
+		parents.add(parent);
 	}
 
-	@Override
-	public void addParent(IShape s) {
-		// TODO Auto-generated method stub
-		
+	public void removeParent(IComplexShape parent) {
+	    parents.remove(parent);
 	}
-
-	@Override
-	public void removeParent(IShape s) {
-		// TODO Auto-generated method stub
-		
+	
+	private void updateParents() {
+	    for(IComplexShape parent: parents) {
+	        parent.update();
+	    }
 	}
-
-
-
 
 }
