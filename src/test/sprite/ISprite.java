@@ -1,8 +1,6 @@
 package test.sprite;
 
-import test.collider.ICollider;
-
-public interface ISprite<T extends ICollider>{
+public interface ISprite<T /*extends ICollider*/>{
 
     void init(T collider);
     
@@ -17,7 +15,7 @@ public interface ISprite<T extends ICollider>{
     void move();
     
 
-    void checkCollision(ICollider collider);
+   // void checkCollision(ICollider collider);
     
     void executeCollision();
     

@@ -1,10 +1,10 @@
 package basic;
 
-public interface IPolygon {
+public interface IPolygon extends IShape {
 
-	void initWithPoints(IPoint... points);
-	
 	void initByCopying(IPolygon other);
+	
+	void initWithPoints(IPoint... points);
 	
 	int getNumberPoints();
 	
@@ -14,5 +14,4 @@ public interface IPolygon {
 	
 	//void rotate(IPoint pivot, double radian);
 	
-	//int getNumberPoints();
 }

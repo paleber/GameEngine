@@ -22,6 +22,4 @@ public interface IVector {
     
     void rotate(double radian);
 
-    String toString();
-
 }

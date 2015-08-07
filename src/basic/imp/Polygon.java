@@ -7,7 +7,6 @@ import java.util.List;
 import basic.IPoint;
 import basic.IPolygon;
 import basic.IVector;
-import sprite.ICollider;
 
 final class Polygon implements IPolygon {
 
@@ -24,11 +23,11 @@ final class Polygon implements IPolygon {
     @Override
     public void initByCopying(IPolygon other) {
         points.clear();
-        for (IPoint p: other) {
+        /*for (IPoint p: other) {
             IPoint q = new Point();
             q.initByCopying(p);
             points.add(q);
-        }
+        } */
     }
 
     
@@ -95,10 +94,7 @@ final class Polygon implements IPolygon {
 	}
 
 	
-	public void checkCollision(ICollider collider) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 	public void executeCollision() {
@@ -127,5 +123,17 @@ final class Polygon implements IPolygon {
 	public int getYMax() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getNumberPoints() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public IPoint getPoint() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
