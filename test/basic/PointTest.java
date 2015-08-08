@@ -65,6 +65,32 @@ public class PointTest {
     }
 
     @Test
+    public void xyMinMax() {
+        p.initWithXY(5, 7);
+        assertEquals(5, p.getXMin(), DELTA);
+        assertEquals(5, p.getXMax(), DELTA);
+        assertEquals(7, p.getYMin(), DELTA);
+        assertEquals(7, p.getYMax(), DELTA);
+    }
+
+    @Test
+    public void parents() {
+        /*
+         * ILine l = INJECTOR.getInstance(ILine.class); p.initWithXY(1, 2);
+         * q.initWithXY(4, 3); l.initWithPoints(p, q);
+         * 
+         * IVector v = INJECTOR.getInstance(IVector.class); v.initWithXY(1, 1);
+         * 
+         * //p.move(v);
+         * 
+         * assertEquals(2, l.getXMin(), DELTA); assertEquals(3, l.getYMin(),
+         * DELTA);
+         * 
+         * // TODO
+         */
+    }
+
+    @Test
     public void toStringTest() {
         p.initWithXY(7, 8);
         assertEquals("(7.000|8.000)", p.toString());

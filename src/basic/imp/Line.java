@@ -35,6 +35,7 @@ public class Line extends ComplexShape implements ILine {
     private void addAsParents() {
         addAsParent(start);
         addAsParent(end);
+        update();
     }
 
     @Override
@@ -71,10 +72,10 @@ public class Line extends ComplexShape implements ILine {
 
     @Override
     public void update() {
-        xMin = Math.min(xMin, xMax);
-        yMin = Math.min(yMin, yMax);
-        xMax = Math.max(xMin, xMax);
-        yMax = Math.max(yMin, yMax);
+        xMin = Math.min(start.getX(), end.getX());
+        yMin = Math.min(start.getY(), end.getY());
+        xMax = Math.max(start.getX(), end.getX());
+        yMax = Math.max(start.getY(), end.getY());
     }
 
     @Override
@@ -92,7 +93,7 @@ public class Line extends ComplexShape implements ILine {
         StringBuilder b = new StringBuilder();
         b.append("<");
         b.append(start);
-        b.append("-");
+        b.append("<>");
         b.append(end);
         b.append(">");
         return b.toString();
