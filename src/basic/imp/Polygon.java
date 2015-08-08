@@ -1,139 +1,128 @@
 package basic.imp;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
+import basic.ILine;
 import basic.IPoint;
 import basic.IPolygon;
 import basic.IVector;
 
-final class Polygon implements IPolygon {
+final class Polygon extends ComplexShape implements IPolygon {
 
-    private final List<IPoint> points = new ArrayList<>();
+    private Point[] points;
+    private ILine[] lines;
     
+    private double xMin, yMin, xMax, yMax;
+    private boolean doUpdate = true;
+
     @Override
     public void initWithPoints(IPoint... points) {
-        this.points.clear();
-        for(IPoint p: points) {
-            this.points.add(p);
+        this.points = (Point[]) points.clone();
+        initLines();
+    }
+
+    @Override
+    public void initByCopying(IPolygon other) {
+        points = new Point[other.getNumberElements()];
+        
+        for (int i = 0; i < points.length; i++) {
+            points[i] = new Point();
+            points[i].initByCopying(other.getPoint(i));
         }
+        
+        initLines();
+    }
+
+    private void initLines() {
+        lines = new ILine[points.length];
+        for (int i = 0; i < lines.length; i++) {
+            lines[i] = new Line();
+            if (i != lines.length - 1) {
+                lines[i].initWithPoints(points[i], points[i + 1]);
+            } else {
+                lines[i].initWithPoints(points[i], points[0]);
+            }
+        }
+    }
+
+    @Override
+    public void move(IVector movement) {
+        doUpdate = false;
+        for (IPoint p : points) {
+            p.move(movement);
+        }
+        doUpdate = true;
+        update();
+    }
+
+    @Override
+    public void rotate(IPoint pivot, double radian) {
+        doUpdate = false;
+        for (IPoint p : points) {
+            p.rotate(pivot, radian);
+        }
+        doUpdate = true;
+        update();
+    }
+
+    @Override
+    public double getXMin() {
+        return xMin;
+    }
+
+    @Override
+    public double getYMin() {
+        return yMin;
+    }
+
+    @Override
+    public double getXMax() {
+        return xMax;
+    }
+
+    @Override
+    public double getYMax() {
+        return yMax;
+    }
+
+    @Override
+    public void update() {
+        if (doUpdate) {
+            xMin = points[0].getX();
+            yMin = points[0].getY();
+            xMax = points[0].getX();
+            yMax = points[0].getY();
+            for (int i = 1; i < points.length; i++) {
+                xMin = Math.min(xMin, points[i].getX());
+                yMin = Math.min(yMin, points[i].getY());
+                xMax = Math.max(xMax, points[i].getX());
+                yMax = Math.max(yMax, points[i].getY()); 
+            }
+        }
+    }
+
+    @Override
+    public int getNumberElements() {
+        return points.length;
+    }
+
+    @Override
+    public IPoint getPoint(int index) {
+        return points[index];
+    }
+
+    @Override
+    public ILine getLine(int index) {
+        return lines[index];
     }
     
     @Override
-    public void initByCopying(IPolygon other) {
-        points.clear();
-        /*for (IPoint p: other) {
-            IPoint q = new Point();
-            q.initByCopying(p);
-            points.add(q);
-        } */
-    }
-
-    
-    public void move(IVector movement) {
-        for(IPoint p: points) {
-            p.move(movement);
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        b.append("<");
+        for (IPoint p: points) {
+            b.append(p);
         }
+        b.append(">");
+        return b.toString();
     }
 
-    
-    public void rotate(IPoint pivot, double radian) {
-        for(IPoint p: points) {
-            p.rotate(pivot, radian);
-        }
-    }
-
-    
-    public Iterator<IPoint> iterator() {
-        
-        return new Iterator<IPoint>() {
-            private int index = 0;
-            
-            @Override
-            public boolean hasNext() {
-                return index >= points.size();
-            }
-
-            @Override
-            public IPoint next() {
-                return points.get(index++);
-                
-            }
-        };
-    }
-
-
-	public void initWithCircle() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public void initWithPolygon() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public void setSpeed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public void setRotation() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
-
-	
-	public void executeCollision() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public int getXMin() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int getYMin() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
-	public int getXMax() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
-	public int getYMax() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getNumberPoints() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public IPoint getPoint() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

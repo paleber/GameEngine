@@ -4,10 +4,38 @@ import basic.ILine;
 import basic.IPoint;
 import basic.IVector;
 
-public class Line implements ILine, IComplexShape {
+public class Line extends ComplexShape implements ILine {
 
-    private IPoint start, end;
+    private Point start, end;
     private double xMin, yMin, xMax, yMax;
+
+    @Override
+    public void initByCopying(ILine other) {
+        removeAsParents();
+        start = new Point();
+        end = new Point();
+        start.initByCopying(other.getStart());
+        end.initByCopying(other.getEnd());
+        addAsParents();
+    }
+
+    @Override
+    public void initWithPoints(IPoint start, IPoint end) {
+        removeAsParents();
+        this.start = (Point) start;
+        this.end = (Point) end;
+        addAsParents();
+    }
+
+    private void removeAsParents() {
+        removeAsParent(start);
+        removeAsParent(end);
+    }
+
+    private void addAsParents() {
+        addAsParent(start);
+        addAsParent(end);
+    }
 
     @Override
     public void move(IVector v) {
@@ -50,21 +78,6 @@ public class Line implements ILine, IComplexShape {
     }
 
     @Override
-    public void initByCopying(ILine other) {
-        start = new Point();
-        start.initByCopying(other.getStart());
-        end = new Point();
-        end.initByCopying(other.getEnd());
-    }
-
-    @Override
-    public void initWithPoints(IPoint start, IPoint end) {
-        // TODO Auto-generated method stub
-        this.start = start;
-        this.end = end;
-    }
-
-    @Override
     public IPoint getStart() {
         return start;
     }
@@ -74,8 +87,15 @@ public class Line implements ILine, IComplexShape {
         return end;
     }
     
-    private void registerInPoints() {
-        
+    @Override
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        b.append("<");
+        b.append(start);
+        b.append("-");
+        b.append(end);
+        b.append(">");
+        return b.toString();
     }
 
 }

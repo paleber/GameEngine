@@ -6,12 +6,10 @@ public interface IPolygon extends IShape {
 	
 	void initWithPoints(IPoint... points);
 	
-	int getNumberPoints();
+	int getNumberElements();
 	
-	IPoint getPoint();
+	IPoint getPoint(int index);
 	
-	//void move(IVector movement);
-	
-	//void rotate(IPoint pivot, double radian);
+	ILine getLine(int index);
 	
 }

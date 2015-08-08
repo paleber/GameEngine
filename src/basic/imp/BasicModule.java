@@ -2,7 +2,9 @@ package basic.imp;
 
 import com.google.inject.AbstractModule;
 
+import basic.ILine;
 import basic.IPoint;
+import basic.IPolygon;
 import basic.IVector;
 
 public class BasicModule extends AbstractModule {
@@ -11,6 +13,8 @@ public class BasicModule extends AbstractModule {
     protected void configure() {
         bind(IPoint.class).to(Point.class);
         bind(IVector.class).to(Vector.class);
+        bind(ILine.class).to(Line.class);
+        bind(IPolygon.class).to(Polygon.class);
     }
 
 }

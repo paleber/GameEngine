@@ -10,13 +10,13 @@ import basic.IVector;
 final class Point implements IPoint {
 
     private double x, y;
-    
-    private final List<IComplexShape> parents = new ArrayList<>();
-    
+
+    private final List<ComplexShape> parents = new ArrayList<>();
+
     @Override
     public void initWithXY(double x, double y) {
-       this.x = x;
-       this.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
@@ -46,7 +46,7 @@ final class Point implements IPoint {
     public void rotate(IPoint pivot, double radian) {
         x -= pivot.getX();
         y -= pivot.getY();
-        
+
         double sin = Math.sin(radian);
         double cos = Math.cos(radian);
 
@@ -58,45 +58,42 @@ final class Point implements IPoint {
         updateParents();
     }
 
-    
+    @Override
+    public double getXMin() {
+        return x;
+    }
+
+    @Override
+    public double getYMin() {
+        return y;
+    }
+
+    @Override
+    public double getXMax() {
+        return x;
+    }
+
+    @Override
+    public double getYMax() {
+        return y;
+    }
+
+    public void addParent(ComplexShape parent) {
+        parents.add(parent);
+    }
+
+    public void removeParent(ComplexShape parent) {
+        parents.remove(parent);
+    }
+
+    private void updateParents() {
+        for (ComplexShape parent : parents) {
+            parent.update();
+        }
+    }
+
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "(%.3f|%.3f)", getX(), getY());
     }
-
-
-	@Override
-	public double getXMin() {
-		return x;
-	}
-
-	@Override
-	public double getYMin() {
-		return y;
-	}
-
-	@Override
-	public double getXMax() {
-		return x;
-	}
-
-	@Override
-	public double getYMax() {
-		return y;
-	}
-
-	public void addParent(IComplexShape parent) {
-		parents.add(parent);
-	}
-
-	public void removeParent(IComplexShape parent) {
-	    parents.remove(parent);
-	}
-	
-	private void updateParents() {
-	    for(IComplexShape parent: parents) {
-	        parent.update();
-	    }
-	}
-
 }

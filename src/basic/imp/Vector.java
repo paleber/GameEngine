@@ -59,7 +59,6 @@ final class Vector implements IVector {
     @Override
     public void setLength(double length) {
         this.length = length;
-        
     }
 
     @Override
