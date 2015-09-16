@@ -75,6 +75,15 @@ public class PointTest {
 
     @Test
     public void parents() {
+        ICircle c = INJECTOR.getInstance(ICircle.class);
+        
+        p.initWithXY(2, 3);
+        q.initWithXY(4, 5);
+
+        c.init(p, 1);
+        c.init(q, 1);
+
+        assertEquals(4, c.getMid().getX(), DELTA);
         /*
          * ILine l = INJECTOR.getInstance(ILine.class); p.initWithXY(1, 2);
          * q.initWithXY(4, 3); l.initWithPoints(p, q);

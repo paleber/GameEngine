@@ -2,6 +2,7 @@ package basic.imp;
 
 import com.google.inject.AbstractModule;
 
+import basic.ICircle;
 import basic.ILine;
 import basic.IPoint;
 import basic.IPolygon;
@@ -15,6 +16,7 @@ public class BasicModule extends AbstractModule {
         bind(IVector.class).to(Vector.class);
         bind(ILine.class).to(Line.class);
         bind(IPolygon.class).to(Polygon.class);
+        bind(ICircle.class).to(Circle.class);
     }
 
 }

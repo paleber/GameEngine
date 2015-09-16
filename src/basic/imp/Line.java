@@ -17,6 +17,7 @@ public class Line extends ComplexShape implements ILine {
         start.initByCopying(other.getStart());
         end.initByCopying(other.getEnd());
         addAsParents();
+        update();
     }
 
     @Override
@@ -25,6 +26,7 @@ public class Line extends ComplexShape implements ILine {
         this.start = (Point) start;
         this.end = (Point) end;
         addAsParents();
+        update();
     }
 
     private void removeAsParents() {
@@ -35,7 +37,6 @@ public class Line extends ComplexShape implements ILine {
     private void addAsParents() {
         addAsParent(start);
         addAsParent(end);
-        update();
     }
 
     @Override

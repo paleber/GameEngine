@@ -15,21 +15,46 @@ final class Polygon extends ComplexShape implements IPolygon {
 
     @Override
     public void initWithPoints(IPoint... points) {
-        this.points = (Point[]) points.clone();
+        removeAsParents();
+        this.points = new Point[points.length];
+        for(int i = 0; i < points.length; i++) {
+            this.points[i] = (Point) points[i];
+            
+        }
+        addAsParents();
         initLines();
+        update();
     }
 
     @Override
     public void initByCopying(IPolygon other) {
+        removeAsParents();
         points = new Point[other.getNumberElements()];
-        
         for (int i = 0; i < points.length; i++) {
             points[i] = new Point();
             points[i].initByCopying(other.getPoint(i));
         }
-        
+        addAsParents();
         initLines();
+        update();
     }
+    
+    
+    private void removeAsParents() {
+        if(points != null) {
+            for(Point p: points) {
+                removeAsParent(p);
+            }
+        }
+    }
+
+    private void addAsParents() {
+        for(Point p: points) {
+            addAsParent(p);
+        }
+        update();
+    }
+    
 
     private void initLines() {
         lines = new ILine[points.length];
