@@ -18,7 +18,7 @@ public class Circle extends ComplexShape implements ICircle{
     public void move(IVector v) {
         mid.move(v);
     }
-
+    
     @Override
     public void rotate(IPoint pivot, double radian) {
         mid.rotate(pivot, radian);

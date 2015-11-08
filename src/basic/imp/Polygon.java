@@ -1,5 +1,7 @@
 package basic.imp;
 
+import com.google.inject.Injector;
+
 import basic.ILine;
 import basic.IPoint;
 import basic.IPolygon;

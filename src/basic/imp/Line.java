@@ -19,7 +19,7 @@ public class Line extends ComplexShape implements ILine {
         addAsParents();
         update();
     }
-
+    
     @Override
     public void initWithPoints(IPoint start, IPoint end) {
         removeAsParents();

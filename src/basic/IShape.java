@@ -13,5 +13,5 @@ public interface IShape {
 	double getXMax();
 
 	double getYMax();
-
+	
 }

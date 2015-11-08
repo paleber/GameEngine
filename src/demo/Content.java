@@ -38,21 +38,20 @@ public class Content {
 			g.drawRect((int)xOffset, (int)yOffset, (int) (xTiles * scale), (int) (yTiles * scale));
 			g.fillRect((int)xOffset, (int)yOffset, (int) scale, (int) scale);
 
-			for (Entry<IShape, Color> entry : shapes.entrySet()) {
-				g.setColor(entry.getValue());
-				paintShape(g, entry.getKey());
-			}
-			
-			g.setColor(Color.GRAY);
+			/*g.setColor(Color.GRAY);
 			for(int i = 1; i < yTiles; i++) {
 				g.drawLine((int)xOffset, (int)(i*scale + yOffset), (int)(scale*xTiles + xOffset), (int)(i*scale + yOffset));
 			}
 			
 			for(int i = 1; i < xTiles; i++) {
 				g.drawLine((int)(i*scale) + (int)xOffset, (int)yOffset,  (int)(i*scale+xOffset), (int)(scale*yTiles + yOffset));
+			} */
+			
+			for (Entry<IShape, Color> entry : shapes.entrySet()) {
+				g.setColor(entry.getValue());
+				paintShape(g, entry.getKey());
 			}
 			
-
 		}
 
 		public void paintShape(Graphics g, IShape shape) {
@@ -82,9 +81,9 @@ public class Content {
 		return content;
 	}
 
-	public void init(int xTiles, int yTiles) {
-		this.xTiles = xTiles;
-		this.yTiles = yTiles;
+	public void init(double width, double height) {
+		this.xTiles = width;
+		this.yTiles = height;
 	}
 
 	public void addShape(IShape shape, Color color) {
