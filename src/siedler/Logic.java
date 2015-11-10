@@ -4,7 +4,7 @@ import siedler.model.Player;
 
 public class Logic {
 
-	// Variablen für freePlaces, blockedPlaces, freeStreets
+	// Variablen fÃ¼r freePlaces, blockedPlaces, freeStreets
 	// Player
 	
 	
@@ -24,11 +24,11 @@ public class Logic {
 		// Alles initialisieren
 		
 		// Zug 
-		// würfeln, Roshtoffe ziehen
+		// wÃ¼rfeln, Roshtoffe ziehen
 		
 		// bauen, Ereigniskarte kaufen, Ereigniskarte aufdecken
 		
-		// auf sieg prüfen, wenn gebaut oder Siegpunkte Karte aufgedeckt wurde
+		// auf sieg prÃ¼fen, wenn gebaut oder Siegpunkte Karte aufgedeckt wurde
 		
 		
 		
