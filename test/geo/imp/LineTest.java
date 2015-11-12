@@ -21,6 +21,7 @@ public class LineTest {
         assertEquals(5, l.getYMax(), DELTA);
     }
 
+    /*
     @Test
     public void testIterable() {
         for(int i = 0; i < 2; i++) {
@@ -34,6 +35,14 @@ public class LineTest {
                 j++;
             }
         }
+    } */
+
+    @Test
+    public void testGetter() {
+        assertEquals(2, l.getStart().getX(), DELTA);
+        assertEquals(3, l.getStart().getY(), DELTA);
+        assertEquals(4, l.getEnd().getX(), DELTA);
+        assertEquals(5, l.getEnd().getY(), DELTA);
     }
 
     @Test
