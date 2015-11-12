@@ -1,5 +1,6 @@
 package collision_old;
 
+/*
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import geo_old.ICircle;
@@ -69,3 +70,4 @@ public final class CollisionTest {
     }
 
 }
+*/
