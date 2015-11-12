@@ -14,15 +14,15 @@ import basic.imp.BasicModule;
 
 public class BoardBuilder {
 
-	// Dreiecke: 3 Ecken Winkel 120°, 6 an einem Punkt 120° = 2PI/6 60
-	// Quadrat: 4 Ecken Winkel 90° , 4 an einem Punkt 90° = 2PI/4 90
-	// Hexagon: 6 Ecken Winkel 60° , 3 an einem Punkt 60° = 2PI/3 120
+	// Dreiecke: 3 Ecken Winkel 120ï¿½, 6 an einem Punkt 120ï¿½ = 2PI/6 60
+	// Quadrat: 4 Ecken Winkel 90ï¿½ , 4 an einem Punkt 90ï¿½ = 2PI/4 90
+	// Hexagon: 6 Ecken Winkel 60ï¿½ , 3 an einem Punkt 60ï¿½ = 2PI/3 120
 
 	private int numCorners;
 	private int numPolys;
 
 	public enum Shape {
-		Triangle, Square, Hexagon;
+		Triangle, Square, Hexagon
 	}
 
 	private static final Injector INJ = Guice.createInjector(new BasicModule());
@@ -88,7 +88,7 @@ public class BoardBuilder {
 	private static final class ExtendedPoly {
 
 		private final IPolygon poly;
-		private int value; // Anzahl weitere Polygon nach außen
+		private int value; // Anzahl weitere Polygon nach auï¿½en
 
 		private ExtendedPoly(IPolygon poly, int value) {
 			this.poly = poly;

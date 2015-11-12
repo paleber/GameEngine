@@ -2,6 +2,9 @@ package geo;
 
 public interface ILine extends IBoundingBox {
 
-	Iterable<IPoint> iteratePoints();
-	
+	//Iterable<IPoint> iteratePoints();
+
+	IPoint getStart();
+	IPoint getEnd();
+
 }

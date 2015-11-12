@@ -34,6 +34,7 @@ final class Line implements ILine {
         return Math.max(points[0].getY(), points[1].getY());
     }
 
+    /*
     private final Iterable<IPoint> pointIterator =  () -> new Iterator<IPoint>() {
         int i = 0;
 
@@ -52,14 +53,25 @@ final class Line implements ILine {
     @Override
     public Iterable<IPoint> iteratePoints() {
         return pointIterator;
-    }
+    } */
 
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("<");
-        pointIterator.forEach(b::append);
+        b.append(points[0]);
+        b.append(points[1]);
         b.append(">");
         return b.toString();
+    }
+
+    @Override
+    public IPoint getStart() {
+        return points[0];
+    }
+
+    @Override
+    public IPoint getEnd() {
+        return points[1];
     }
 }

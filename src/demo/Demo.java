@@ -21,7 +21,7 @@ public class Demo {
     
     private static final Injector INJECTOR = Guice.createInjector(new BasicModule());
     
-    // Ränder erstellen
+    // Rï¿½nder erstellen
     private final IPolygon[] boarder = new IPolygon[1];
     
     {
@@ -54,8 +54,8 @@ public class Demo {
         public void paint(Graphics g) {
             g.fillPolygon(convert(boarder[0]));
             g.drawLine(0, 0, 200, 200);
-        };
-        
+        }
+
     };
         
   

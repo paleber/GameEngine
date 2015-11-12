@@ -17,6 +17,18 @@ final class Polygon implements IPolygon {
     private double xMin, yMin, xMax, yMax;
 
     @Override
+    public void addPoint(double x, double y) {
+        points.add(new Point(x, y));
+    }
+
+    @Override
+    public void addPoint(IVector v) {
+        Point p = new Point(points.get(points.size() - 1));
+        p.move(v);
+        points.add(p);
+    }
+
+    @Override
     public void copy(IPolygon other) {
         points.clear();
         lines.clear();
@@ -69,7 +81,7 @@ final class Polygon implements IPolygon {
         return yMax;
     }
 
-    public void update() {
+    private void update() {
         xMin = points.get(0).getX();
         yMin = points.get(0).getY();
         xMax = points.get(0).getX();
@@ -80,18 +92,6 @@ final class Polygon implements IPolygon {
             xMax = Math.max(xMax, points.get(i).getX());
             yMax = Math.max(yMax, points.get(i).getY());
         }
-    }
-
-    @Override
-    public void addPoint(double x, double y) {
-        points.add(new Point(x, y));
-    }
-
-    @Override
-    public void addPoint(IVector v) {
-        Point p = new Point(points.get(points.size() - 1));
-        p.move(v);
-        points.add(p);
     }
 
     private final Iterable<IPoint> pointIterator = () -> new Iterator<IPoint>() {
@@ -114,7 +114,7 @@ final class Polygon implements IPolygon {
     }
 
     private final Iterable<ILine> lineIterator = () -> new Iterator<ILine>() {
-        int i = 0;
+        private int i = 0;
 
         @Override
         public boolean hasNext() {
