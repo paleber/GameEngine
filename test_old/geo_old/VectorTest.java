@@ -1,5 +1,5 @@
 package geo_old;
-
+/*
 import static org.junit.Assert.assertEquals;
 import geo_old.imp.GeoModule;
 
@@ -96,3 +96,4 @@ public class VectorTest {
         assertEquals(-2, u.dotProduct(v), DELTA);
     }
 }
+*/

@@ -7,7 +7,7 @@ import geo.IPolygon;
 import geo.IVector;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 public class TestGeoModule {
 
@@ -15,9 +15,9 @@ public class TestGeoModule {
 
     @Test
     public void testConfigure() {
-        assertTrue(INJ.getInstance(IVector.class) != null);
-        assertTrue(INJ.getInstance(IPolygon.class) != null);
-        assertTrue(INJ.getInstance(ICircle.class) != null);
+        assertNotNull(INJ.getInstance(IVector.class));
+        assertNotNull(INJ.getInstance(IPolygon.class));
+        assertNotNull(INJ.getInstance(ICircle.class));
     }
 
 }

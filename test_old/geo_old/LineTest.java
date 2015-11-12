@@ -1,5 +1,6 @@
 package geo_old;
 
+/*
 import static org.junit.Assert.assertTrue;
 import geo_old.imp.GeoModule;
 
@@ -38,6 +39,7 @@ public class LineTest {
         assertEquals(4, bb.getXMax(), 0);
         assertEquals(1, bb.getYMin(), 0);
         assertEquals(5, bb.getYMax(), 0);
-    } */
+    } *
 
 }
+*/

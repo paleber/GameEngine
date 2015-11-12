@@ -1,5 +1,5 @@
 package geo_old;
-
+/*
 import static org.junit.Assert.assertEquals;
 import geo_old.imp.GeoModule;
 
@@ -102,5 +102,6 @@ public class PolygonTest {
         assertEquals(1, bb.getXMax(), DELTA);
         assertEquals(1, bb.getYMax(), DELTA);
 
-    } */
+    } *
 }
+*/

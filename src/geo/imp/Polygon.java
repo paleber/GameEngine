@@ -11,14 +11,15 @@ import java.util.List;
 
 final class Polygon implements IPolygon {
 
-    private List<Point> points = new ArrayList<>();
-    private List<Line> lines = new ArrayList<>();
+    private  List<Point> points = new ArrayList<>();
+    private  List<Line> lines = new ArrayList<>();
 
     private double xMin, yMin, xMax, yMax;
 
     @Override
     public void addPoint(double x, double y) {
         points.add(new Point(x, y));
+        update();
     }
 
     @Override
@@ -26,16 +27,17 @@ final class Polygon implements IPolygon {
         Point p = new Point(points.get(points.size() - 1));
         p.move(v);
         points.add(p);
+        update();
     }
 
     @Override
     public void copy(IPolygon other) {
         points.clear();
         lines.clear();
-
         for (IPoint p : other.iteratePoints()) {
             points.add(new Point(p.getX(), p.getY()));
         }
+        update();
     }
 
     private void initLines() {

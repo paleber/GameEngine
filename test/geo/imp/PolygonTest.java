@@ -10,6 +10,11 @@ public class PolygonTest {
 
     private static final double DELTA = 1e-9;
 
+    static {
+        // Remove setup in tests
+        new Polygon();
+    }
+
     @Test
     public void testAddPoint() {
         Polygon poly = new Polygon();
@@ -68,6 +73,12 @@ public class PolygonTest {
         poly.addPoint(4, 7);
         poly.addPoint(5, 4);
 
+        assertEquals(4, poly.getXMin(), DELTA);
+        assertEquals(8, poly.getXMax(), DELTA);
+        assertEquals(3, poly.getYMin(), DELTA);
+        assertEquals(7, poly.getYMax(), DELTA);
+
+
         Vector v = new Vector();
         v.init(1, 1);
 
@@ -107,6 +118,7 @@ public class PolygonTest {
         poly.addPoint(4, 5);
         assertEquals("<(0.000|1.000)(2.000|3.000)(4.000|5.000)>", poly.toString());
     }
+
 
     @Test
     public void testLines() {

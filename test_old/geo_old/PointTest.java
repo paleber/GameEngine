@@ -1,5 +1,5 @@
 package geo_old;
-
+/*
 import static org.junit.Assert.assertEquals;
 import geo_old.imp.GeoModule;
 
@@ -69,3 +69,4 @@ public class PointTest {
         assertEquals("(3.000|4.000)", p.toString());
     }
 }
+*/
