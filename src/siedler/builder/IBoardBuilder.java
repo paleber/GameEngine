@@ -6,13 +6,11 @@ import siedler.model.Terrain;
 
 public interface IBoardBuilder {
 
-	void build();
-	
-	Terrain[] getTerrain();
+	public Terrain[] getTerrain();
 
-	Intersection[] getIntersections();
+	public Intersection[] getIntersections();
 	
-	Path[] getPaths();
+	public Path[] getPaths();
 	
 	
 }

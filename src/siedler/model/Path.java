@@ -10,6 +10,8 @@ public class Path {
 	private ILine line;
 	
 	private Path[] nextPaths;
+
+	private Intersection neighbors;
 	
 	private Player owner = null;
 }

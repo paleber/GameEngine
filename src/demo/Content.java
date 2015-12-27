@@ -35,17 +35,17 @@ public class Content {
 			yOffset =  ((getHeight() - yTiles * scale) / 2);
 			xOffset =  ((getWidth() - xTiles * scale) / 2);
 
-			g.drawRect((int)xOffset, (int)yOffset, (int) (xTiles * scale), (int) (yTiles * scale));
-			g.fillRect((int)xOffset, (int)yOffset, (int) scale, (int) scale);
+			//g.drawRect((int)xOffset, (int)yOffset, (int) (xTiles * scale), (int) (yTiles * scale));
+			//g.drawRect((int)xOffset, (int)yOffset, (int) scale, (int) scale);
 
-			/*g.setColor(Color.GRAY);
+			g.setColor(Color.GRAY);
 			for(int i = 1; i < yTiles; i++) {
 				g.drawLine((int)xOffset, (int)(i*scale + yOffset), (int)(scale*xTiles + xOffset), (int)(i*scale + yOffset));
 			}
 			
 			for(int i = 1; i < xTiles; i++) {
 				g.drawLine((int)(i*scale) + (int)xOffset, (int)yOffset,  (int)(i*scale+xOffset), (int)(scale*yTiles + yOffset));
-			} */
+			}
 			
 			for (Entry<IShape, Color> entry : shapes.entrySet()) {
 				g.setColor(entry.getValue());

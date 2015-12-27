@@ -13,5 +13,19 @@ public class Intersection {
 	private Path[] nextPaths;
 	
 	private Player owner;
-	
+
+
+
+	public Intersection(IPoint p) {
+
+    }
+
+    public void addNeighbor(Intersection inter) {
+
+    }
+
+    public void addPath(Path path) {
+
+    }
+
 }
