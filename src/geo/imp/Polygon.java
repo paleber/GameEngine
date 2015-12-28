@@ -1,30 +1,31 @@
-package geo.imp.imp3;
+package geo.imp;
 
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
-import geo2.ILine;
-import geo2.IPoint;
-import geo2.IPolygon;
-import geo2.IVector;
+
+import geo.ILine;
+import geo.IPoint;
+import geo.IPolygon;
+import geo.IVector;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/** Implementation of Polygon. */
-final class Polygon implements IPolygon {
+/**
+ * Implementation of Polygon.
+ */
+public class Polygon extends AbstractBoundingBox implements IPolygon {
 
     private final Point[] points;
     private final Line[] lines;
 
-    private double xMin, yMin, xMax, yMax;
-
     private final Iterable<IPoint> pointIterator =
             () -> new Iterator<IPoint>() {
-                private int i = 0;
+                private int index = 0;
 
                 @Override
                 public boolean hasNext() {
-                    return i < points.length;
+                    return index < points.length;
                 }
 
                 @Override
@@ -32,17 +33,17 @@ final class Polygon implements IPolygon {
                     if (!hasNext()) {
                         throw new NoSuchElementException();
                     }
-                    return points[i++];
+                    return points[index++];
                 }
             };
 
     private final Iterable<ILine> lineIterator =
             () -> new Iterator<ILine>() {
-                private int i = 0;
+                private int index = 0;
 
                 @Override
                 public boolean hasNext() {
-                    return i < lines.length;
+                    return index < lines.length;
                 }
 
                 @Override
@@ -50,7 +51,7 @@ final class Polygon implements IPolygon {
                     if (!hasNext()) {
                         throw new NoSuchElementException();
                     }
-                    return lines[i++];
+                    return lines[index++];
                 }
             };
 
@@ -58,12 +59,12 @@ final class Polygon implements IPolygon {
     Polygon(@Assisted final IPoint... p) {
         points = new Point[p.length];
         for (int i = 0; i < p.length; i++) {
-           points[i] = (Point)p[i];
+            points[i] = (Point) p[i];
         }
         lines = new Line[points.length];
         initLines();
+        addAsParent();
     }
-
 
     @AssistedInject
     Polygon(@Assisted final IPoint p, @Assisted final IVector... v) {
@@ -75,6 +76,7 @@ final class Polygon implements IPolygon {
         }
         lines = new Line[points.length];
         initLines();
+        addAsParent();
     }
 
     @AssistedInject
@@ -86,13 +88,19 @@ final class Polygon implements IPolygon {
         }
         lines = new Line[points.length];
         initLines();
+        addAsParent();
     }
 
     private void initLines() {
         for (int i = 0; i < points.length; i++) {
             lines[i] = new Line(points[i], points[(i + 1) % points.length]);
         }
-        update();
+    }
+
+    private void addAsParent() {
+        for (Point p : points) {
+            p.addParent(this);
+        }
     }
 
     @Override
@@ -100,7 +108,7 @@ final class Polygon implements IPolygon {
         for (Point p : points) {
             p.move(v);
         }
-        update();
+        notifyUpdate();
     }
 
     @Override
@@ -108,50 +116,58 @@ final class Polygon implements IPolygon {
         for (Point p : points) {
             p.rotate(pivot, radian);
         }
-        update();
+        notifyUpdate();
     }
 
     @Override
-    public double getXMin() {
+    double updateXMin() {
+        double xMin = points[0].getX();
+        for (int i = 1; i < points.length; i++) {
+            xMin = Math.min(xMin, points[i].getX());
+        }
         return xMin;
     }
 
     @Override
-    public double getYMin() {
-        return yMin;
-    }
-
-    @Override
-    public double getXMax() {
+    double updateXMax() {
+        double xMax = points[0].getX();
+        for (int i = 1; i < points.length; i++) {
+            xMax = Math.max(xMax, points[i].getX());
+        }
         return xMax;
     }
 
     @Override
-    public double getYMax() {
+    double updateYMin() {
+        double yMin = points[0].getY();
+        for (int i = 1; i < points.length; i++) {
+            yMin = Math.min(yMin, points[i].getY());
+        }
+        return yMin;
+    }
+
+    @Override
+    double updateYMax() {
+        double yMax = points[0].getY();
+        for (int i = 1; i < points.length; i++) {
+            yMax = Math.max(yMax, points[i].getY());
+        }
         return yMax;
     }
 
     @Override
-    public double getXMid() {
-        return (xMin + xMax) / 2;
+    public int getNumberElements() {
+        return points.length;
     }
 
     @Override
-    public double getYMid() {
-        return (yMin + yMax) / 2;
+    public IPoint getPoint(int index) {
+        return points[index];
     }
 
-    private void update() {
-        xMin = points[0].getX();
-        yMin = points[0].getY();
-        xMax = points[0].getX();
-        yMax = points[0].getY();
-        for (int i = 1; i < points.length; i++) {
-            xMin = Math.min(xMin, points[i].getX());
-            yMin = Math.min(yMin, points[i].getY());
-            xMax = Math.max(xMax, points[i].getX());
-            yMax = Math.max(yMax, points[i].getY());
-        }
+    @Override
+    public ILine getLine(int index) {
+        return lines[index];
     }
 
     @Override

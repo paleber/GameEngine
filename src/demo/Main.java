@@ -1,34 +1,6 @@
 package demo;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.swing.JPanel;
-
-import demo.old.Ball;
-import demo.old.IBall;
-import demo.old.IWall;
-import demo.old.Wall;
-import time.source.SystemTimeSourceModule;
-import time.timer.ITimer;
-import time.timer.ITrigger;
-import time.timer.TimerModule;
-import time.tpf.ITpfCounter;
-import time.tpf.TpfCounterModule;
-import collision.Collision;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import frame.FrameModule;
-import frame.IFrame;
-import geo_old.IPoint;
-import geo_old.IPolygon;
-import geo.imp.imp4.GeoModule;
+/*
 
 public class Main implements ITrigger {
 
@@ -198,3 +170,5 @@ public class Main implements ITrigger {
     }
 
 }
+
+*/

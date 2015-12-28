@@ -1,16 +1,18 @@
-package geo.imp.imp3;
+package geo.imp;
 
 import com.google.inject.assistedinject.Assisted;
-
 import com.google.inject.assistedinject.AssistedInject;
-import geo2.ICircle;
-import geo2.IPoint;
-import geo2.IVector;
+
+import geo.ICircle;
+import geo.IPoint;
+import geo.IVector;
 
 import java.util.Locale;
 
-/** Implementation of Circle. */
-final class Circle implements ICircle {
+/**
+ * Implementation of Circle.
+ */
+public class Circle extends AbstractBoundingBox implements ICircle {
 
     private final Point mid;
     private final double radius;
@@ -19,52 +21,46 @@ final class Circle implements ICircle {
     Circle(@Assisted final IPoint mid, @Assisted final double radius) {
         this.mid = (Point) mid;
         this.radius = radius;
+        this.mid.addParent(this);
     }
 
     @AssistedInject
     Circle(@Assisted final ICircle other) {
         mid = new Point(other.getMid());
         radius = other.getRadius();
+        mid.addParent(this);
     }
 
     @Override
     public void move(final IVector v) {
         mid.move(v);
+        notifyUpdate();
     }
 
     @Override
     public void rotate(final IPoint pivot, final double radian) {
         mid.rotate(pivot, radian);
+        notifyUpdate();
     }
 
     @Override
-    public double getXMin() {
+    double updateXMin() {
         return mid.getX() - radius;
     }
 
     @Override
-    public double getYMin() {
-        return mid.getY() - radius;
-    }
-
-    @Override
-    public double getXMax() {
+    double updateXMax() {
         return mid.getX() + radius;
     }
 
     @Override
-    public double getYMax() {
+    double updateYMin() {
+        return mid.getY() - radius;
+    }
+
+    @Override
+    double updateYMax() {
         return mid.getY() + radius;
-    }
-
-    @Override
-    public double getXMid() {
-        return mid.getX();
-    }
-
-    @Override
-    public double getYMid() {
-        return mid.getY();
     }
 
     @Override
@@ -80,7 +76,7 @@ final class Circle implements ICircle {
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "<%sr=%.3f>", mid.toString(),
-                             radius);
+                radius);
     }
 
 }

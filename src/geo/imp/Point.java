@@ -1,16 +1,22 @@
-package geo.imp.imp3;
+package geo.imp;
 
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
-import geo2.IPoint;
-import geo2.IVector;
+import geo.IPoint;
+import geo.IVector;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-/** Implementation of Point. */
-final class Point implements IPoint {
+/**
+ * Implementation of Point.
+ */
+public class Point implements IPoint {
 
     private double x, y;
+
+    private final List<AbstractBoundingBox> parents = new ArrayList<>();
 
     @AssistedInject
     Point(@Assisted("x") final double x, @Assisted("y") final double y) {
@@ -35,16 +41,22 @@ final class Point implements IPoint {
     }
 
     @Override
+    public double distanceTo(IPoint other) {
+        return Math.sqrt(squareDistanceTo(other));
+    }
+
+    @Override
     public double squareDistanceTo(final IPoint other) {
         return (x * x) + (y * y);
     }
 
-    void move(final IVector v) {
+    public void move(final IVector v) {
         x += v.getX();
         y += v.getY();
+        notifyParents();
     }
 
-    void rotate(final IPoint pivot, final double radian) {
+    public void rotate(final IPoint pivot, final double radian) {
         x -= pivot.getX();
         y -= pivot.getY();
 
@@ -56,6 +68,21 @@ final class Point implements IPoint {
 
         x = xn + pivot.getX();
         y = yn + pivot.getY();
+        notifyParents();
+    }
+
+    void addParent(AbstractBoundingBox parent) {
+        parents.add(parent);
+    }
+
+    void removeParent(AbstractBoundingBox parent) {
+        parents.remove(parent);
+    }
+
+    private void notifyParents() {
+        for (AbstractBoundingBox parent : parents) {
+            parent.notifyUpdate();
+        }
     }
 
     @Override

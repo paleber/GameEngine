@@ -1,16 +1,8 @@
 package collision;
 
-import geo_old.ICircle;
-import geo_old.ILine;
-import geo_old.IPoint;
-import geo_old.IVector;
-import geo.imp.imp4.GeoModule;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 public final class Collision {
 
+    /*
     private static final Injector INJECTOR = Guice
             .createInjector(new GeoModule());
 
@@ -66,7 +58,7 @@ public final class Collision {
         return p.distanceSquareTo(circle.getMid()) < circle.getRadius()
                 * circle.getRadius();
 
-    }
+    } */
 
     
 

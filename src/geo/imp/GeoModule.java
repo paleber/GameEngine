@@ -1,9 +1,12 @@
-package geo.imp.imp3;
+package geo.imp;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
+import geo.*;
 
-/** GeoModule. */
+/**
+ * GeoModule.
+ */
 public final class GeoModule extends AbstractModule {
 
     @Override
@@ -15,8 +18,6 @@ public final class GeoModule extends AbstractModule {
                 implement(ICircle.class, Circle.class).
                 implement(IPolygon.class, Polygon.class).
                 build(IGeoFactory.class));
-
-
     }
 
 }

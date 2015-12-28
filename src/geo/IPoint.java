@@ -1,29 +1,9 @@
 package geo;
 
-
-
-
-
-    // void initByCopying(IPoint other);
-
-    // void initWithXY(double x, double y);
-
-    //void set(double x, double y);
-
-    //void copy(IPoint other);
-
-    //void move(geo_old.IVector v);
-
-    //void rotateAround(double angleDeg, IPoint pivot);
-
-    //double distanceTo(IPoint other);
-
-
-
 /**
  * Interface of Point.
  */
-public interface IPoint {
+public interface IPoint extends IMovable {
 
     /**
      * Get the x-value.
@@ -38,6 +18,14 @@ public interface IPoint {
      * @return y-value
      */
     double getY();
+
+    /**
+     * Calculate the distance to an other point.
+     *
+     * @param other other point
+     * @return square-distance
+     */
+    double distanceTo(IPoint other);
 
     /**
      * Calculate the square-distance to an other point.

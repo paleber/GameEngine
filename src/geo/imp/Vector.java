@@ -1,14 +1,17 @@
-package geo.imp.imp3;
+package geo.imp;
+
 
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
-import geo2.IPoint;
-import geo2.IVector;
+import geo.IPoint;
+import geo.IVector;
 
 import java.util.Locale;
 
-/** Implementation of Vector. */
-final class Vector implements IVector {
+/**
+ * Implementation of Vector.
+ */
+public class Vector implements IVector{
 
     private double radian, length;
 
@@ -67,6 +70,33 @@ final class Vector implements IVector {
             radian += 2 * Math.PI;
         }
     }
+
+
+
+    /*
+    @Override
+    public double dotProduct(IVector other) {
+        return getX() * other.getX() + getY() * other.getY();
+    }
+
+    @Override
+    public void reflect(ILine l) {
+
+        IVector n = new Vector();
+        n.stretchBetween(l.getStart(), l.getEnd());
+        n.rotate(90);
+        n.setLength(1);
+
+        double a = 2 * dotProduct(n);
+
+        n.multScalar(a);
+
+        set(getX() - n.getX(), getY() - n.getY());
+
+    } */
+
+
+
 
     @Override
     public String toString() {
