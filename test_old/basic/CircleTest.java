@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import basic.imp.BasicModule;
+import geo.imp.imp1.BasicModule;
 
 public class CircleTest{
 

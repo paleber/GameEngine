@@ -2,7 +2,7 @@ package geo_old;
 
 /*
 import static org.junit.Assert.assertTrue;
-import geo_old.imp.GeoModule;
+import geo.imp.imp4.GeoModule;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import time_old.source.FakeTimeSourceModule;
-import time_old.source.ITimeSource;
-import time_old.source.SystemTimeSourceModule;
+import FakeTimeSourceModule;
+import ITimeSource;
+import SystemTimeSourceModule;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

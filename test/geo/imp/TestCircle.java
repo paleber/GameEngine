@@ -1,5 +1,8 @@
 package geo.imp;
 
+import geo.imp.imp2.Circle;
+import geo.imp.imp2.Point;
+import geo.imp.imp2.Vector;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

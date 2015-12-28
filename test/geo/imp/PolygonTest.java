@@ -2,6 +2,9 @@ package geo.imp;
 
 import geo.ILine;
 import geo.IPoint;
+import geo.imp.imp2.Point;
+import geo.imp.imp2.Polygon;
+import geo.imp.imp2.Vector;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

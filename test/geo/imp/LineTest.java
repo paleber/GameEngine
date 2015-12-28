@@ -1,6 +1,7 @@
 package geo.imp;
 
-import geo.IPoint;
+import geo.imp.imp2.Line;
+import geo.imp.imp2.Point;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

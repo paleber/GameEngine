@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import time_old.source.FakeTimeSourceModule;
-import time_old.source.ITimeSource;
-import time_old.tpf.ITpfCounter;
-import time_old.tpf.TpfCounterModule;
+import FakeTimeSourceModule;
+import ITimeSource;
+import ITpfCounter;
+import TpfCounterModule;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;

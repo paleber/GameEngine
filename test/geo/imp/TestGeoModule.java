@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import geo.ICircle;
 import geo.IPolygon;
 import geo.IVector;
+import geo.imp.imp2.GeoModule;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;

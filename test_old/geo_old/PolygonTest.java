@@ -1,7 +1,7 @@
 package geo_old;
 /*
 import static org.junit.Assert.assertEquals;
-import geo_old.imp.GeoModule;
+import geo.imp.imp4.GeoModule;
 
 import java.util.Iterator;
 
