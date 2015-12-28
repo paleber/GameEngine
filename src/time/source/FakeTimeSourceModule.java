@@ -5,25 +5,24 @@ import com.google.inject.Singleton;
 
 public final class FakeTimeSourceModule extends AbstractModule {
 
+    private class FakeTimeSource implements ITimeSource {
+        private long nanoTime;
+
+        @Override
+        public long getNanoTime() {
+            return nanoTime;
+        }
+
+        @Override
+        public void setNanoTime(final long nanoTime) {
+            this.nanoTime = nanoTime;
+        }
+
+    }
+
     @Override
     protected void configure() {
         bind(ITimeSource.class).to(FakeTimeSource.class).in(Singleton.class);
-    }
-
-}
-
-class FakeTimeSource implements ITimeSource {
-
-    private long nanoTime;
-    
-    @Override
-    public long getNanoTime() {
-        return nanoTime;
-    }
-
-    @Override
-    public void setNanoTime(final long nanoTime) {
-        this.nanoTime = nanoTime;
     }
 
 }
