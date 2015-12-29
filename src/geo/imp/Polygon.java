@@ -1,8 +1,8 @@
 package geo.imp;
 
 import com.google.inject.assistedinject.Assisted;
-import com.google.inject.assistedinject.AssistedInject;
 
+import com.google.inject.assistedinject.AssistedInject;
 import geo.ILine;
 import geo.IPoint;
 import geo.IPolygon;

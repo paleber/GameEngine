@@ -1,6 +1,7 @@
 package geo;
 
 import com.google.inject.assistedinject.Assisted;
+import com.google.inject.name.Named;
 
 /**
  * Factory for GeoModule.
