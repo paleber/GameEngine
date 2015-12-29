@@ -1,5 +1,6 @@
 package demo.hexagon_field;
 
+/*
 import java.awt.Graphics;
 import java.awt.Polygon;
 
@@ -82,3 +83,4 @@ public class Demo {
     }
     
 }
+*/

@@ -1,63 +1,53 @@
 package geo.imp;
 
-import geo.IVector;
-import geo.imp.imp2.Point;
-import geo.imp.imp2.Vector;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/** Tests for Vector. */
 public class VectorTest {
 
-    private final IVector v = new Vector();
     private static final double DELTA = 1e-9;
 
     @Test
-    public void testInit() {
-        v.init(5, 3);
+    public void testValueConstructor() {
+        Vector v = new Vector(5, 3);
         assertEquals(5, v.getX(), DELTA);
         assertEquals(3, v.getY(), DELTA);
     }
 
     @Test
-    public void testCopy() {
-        IVector u = new Vector();
-        u.init(1, 3);
-
-        v.copy(u);
+    public void testCopyConstructor() {
+        Vector v = new Vector(new Vector(1, 3));
         assertEquals(1, v.getX(), DELTA);
         assertEquals(3, v.getY(), DELTA);
     }
 
     @Test
-    public void testStretch() {
-        Point p = new Point(-2, -1);
-        Point q = new Point(3, 2);
-
-        v.stretch(p, q);
-        assertEquals(5, v.getX(), DELTA);
-        assertEquals(3, v.getY(), DELTA);
-    }
-
-    @Test
-    public void testGetter() {
-        v.init(5, 2);
-        assertEquals(5, v.getX(), DELTA);
+    public void testStretchConstructor() {
+        Vector v = new Vector(new Point(1, 1), new Point(2, 3));
+        assertEquals(1, v.getX(), DELTA);
         assertEquals(2, v.getY(), DELTA);
     }
 
     @Test
-    public void testLength() {
-        v.init(0, 2);
-        assertEquals(2, v.getLength(), DELTA);
+    public void testGetter() {
+        Vector v = new Vector(3, 4);
+        assertEquals(3, v.getX(), DELTA);
+        assertEquals(4, v.getY(), DELTA);
+        assertEquals(5, v.getLength(), DELTA);
+    }
 
+    @Test
+    public void testSetLength() {
+        Vector v = new Vector(0, 0);
         v.setLength(3);
         assertEquals(3, v.getLength(), DELTA);
     }
 
     @Test
     public void testRotateAndAngle() {
-        v.init(1, 0);
+        Vector v = new Vector(1, 0);
         v.rotate(0.25 * Math.PI);
         assertEquals(0.25 * Math.PI, v.getAngle(), DELTA);
 
@@ -70,8 +60,20 @@ public class VectorTest {
 
     @Test
     public void testToString() {
-        v.init(2, 3);
+        Vector v = new Vector(2, 3);
         assertEquals("<2.000|3.000>", v.toString());
     }
+
+    /*
+    @Test
+    public void dotProduct() {
+        IVector u = INJECTOR.getInstance(IVector.class);
+        u.set(3, 4);
+        IVector v = INJECTOR.getInstance(IVector.class);
+        v.set(-2, 1);
+        assertEquals(-2, u.dotProduct(v), DELTA);
+    } */
+
+
 
 }

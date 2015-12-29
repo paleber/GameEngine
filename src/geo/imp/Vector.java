@@ -11,7 +11,7 @@ import java.util.Locale;
 /**
  * Implementation of Vector.
  */
-public class Vector implements IVector{
+final class Vector implements IVector{
 
     private double radian, length;
 
@@ -71,8 +71,6 @@ public class Vector implements IVector{
         }
     }
 
-
-
     /*
     @Override
     public double dotProduct(IVector other) {
@@ -94,8 +92,6 @@ public class Vector implements IVector{
         set(getX() - n.getX(), getY() - n.getY());
 
     } */
-
-
 
 
     @Override

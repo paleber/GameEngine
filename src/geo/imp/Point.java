@@ -12,11 +12,11 @@ import java.util.Locale;
 /**
  * Implementation of Point.
  */
-public class Point implements IPoint {
+final class Point implements IPoint {
 
     private double x, y;
 
-    private final List<AbstractBoundingBox> parents = new ArrayList<>();
+    private final List<BoundingBox> parents = new ArrayList<>();
 
     @AssistedInject
     Point(@Assisted("x") final double x, @Assisted("y") final double y) {
@@ -47,15 +47,19 @@ public class Point implements IPoint {
 
     @Override
     public double squareDistanceTo(final IPoint other) {
-        return (x * x) + (y * y);
+        double dx = other.getX() - x;
+        double dy = other.getY() - y;
+        return (dx * dx) + (dy * dy);
     }
 
+    @Override
     public void move(final IVector v) {
         x += v.getX();
         y += v.getY();
         notifyParents();
     }
 
+    @Override
     public void rotate(final IPoint pivot, final double radian) {
         x -= pivot.getX();
         y -= pivot.getY();
@@ -71,18 +75,18 @@ public class Point implements IPoint {
         notifyParents();
     }
 
-    void addParent(AbstractBoundingBox parent) {
+    void addParent(BoundingBox parent) {
         parents.add(parent);
     }
 
+    /*
     void removeParent(AbstractBoundingBox parent) {
         parents.remove(parent);
     }
+    */
 
     private void notifyParents() {
-        for (AbstractBoundingBox parent : parents) {
-            parent.notifyUpdate();
-        }
+        parents.forEach(BoundingBox::updateBoundingBox);
     }
 
     @Override

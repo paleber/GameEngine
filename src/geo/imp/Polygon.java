@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 /**
  * Implementation of Polygon.
  */
-public class Polygon extends AbstractBoundingBox implements IPolygon {
+final class Polygon extends BoundingBox implements IPolygon {
 
     private final Point[] points;
     private final Line[] lines;
@@ -108,7 +108,7 @@ public class Polygon extends AbstractBoundingBox implements IPolygon {
         for (Point p : points) {
             p.move(v);
         }
-        notifyUpdate();
+        updateBoundingBox();
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Polygon extends AbstractBoundingBox implements IPolygon {
         for (Point p : points) {
             p.rotate(pivot, radian);
         }
-        notifyUpdate();
+        updateBoundingBox();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package demo.hexagon_field;
 
+/*
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -95,3 +96,4 @@ public class Content {
 	}
 
 }
+*/

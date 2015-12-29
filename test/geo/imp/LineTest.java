@@ -1,25 +1,59 @@
 package geo.imp;
 
-import geo.imp.imp2.Line;
-import geo.imp.imp2.Point;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for Line.
+ */
 public class LineTest {
 
     private static final double DELTA = 1e-9;
 
-    private static final Point p = new Point(2, 3);
-    private static final Point q = new Point(4, 5);
-    private static final Line l = new Line(p, q);
+    @Test
+    public void testValueConstructor() {
+        Line l = new Line(new Point(1, 2), new Point(4, 3));
+
+        assertEquals(1, l.getStart().getX(), DELTA);
+        assertEquals(2, l.getStart().getY(), DELTA);
+        assertEquals(4, l.getEnd().getX(), DELTA);
+        assertEquals(3, l.getEnd().getY(), DELTA);
+    }
 
     @Test
-    public void testBoundingBox() {
-        assertEquals(2, l.getXMin(), DELTA);
+    public void testCopyConstructor() {
+        Line l = new Line(new Line(new Point(5, 7), new Point(1, 4)));
+
+        assertEquals(5, l.getStart().getX(), DELTA);
+        assertEquals(7, l.getStart().getY(), DELTA);
+        assertEquals(1, l.getEnd().getX(), DELTA);
+        assertEquals(4, l.getEnd().getY(), DELTA);
+    }
+
+    @Test
+    public void testGetter() {
+        Point p = new Point(1, 3);
+        Point q = new Point(4, 2);
+        Line l = new Line(p, q);
+
+        assertEquals(l.getStart(), p);
+        assertEquals(l.getEnd(), q);
+    }
+
+    @Test
+    public void testUpdateXYMinMax() {
+        Line l = new Line(new Point(5, 6), new Point(7, 3));
+        assertEquals(5, l.getXMin(), DELTA);
+        assertEquals(7, l.getXMax(), DELTA);
         assertEquals(3, l.getYMin(), DELTA);
-        assertEquals(4, l.getXMax(), DELTA);
-        assertEquals(5, l.getYMax(), DELTA);
+        assertEquals(6, l.getYMax(), DELTA);
+    }
+
+    @Test
+    public void toStringTest() {
+        Line l = new Line(new Point(1, 2), new Point(4, 3));
+        assertEquals("<(1.000|2.000)(4.000|3.000)>", l.toString());
     }
 
     /*
@@ -37,18 +71,5 @@ public class LineTest {
             }
         }
     } */
-
-    @Test
-    public void testGetter() {
-        assertEquals(2, l.getStart().getX(), DELTA);
-        assertEquals(3, l.getStart().getY(), DELTA);
-        assertEquals(4, l.getEnd().getX(), DELTA);
-        assertEquals(5, l.getEnd().getY(), DELTA);
-    }
-
-    @Test
-    public void testToString() {
-        assertEquals("<(2.000|3.000)(4.000|5.000)>", l.toString());
-    }
 
 }

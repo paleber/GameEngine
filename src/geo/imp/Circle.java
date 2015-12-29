@@ -12,7 +12,7 @@ import java.util.Locale;
 /**
  * Implementation of Circle.
  */
-public class Circle extends AbstractBoundingBox implements ICircle {
+final class Circle extends BoundingBox implements ICircle {
 
     private final Point mid;
     private final double radius;
@@ -34,13 +34,13 @@ public class Circle extends AbstractBoundingBox implements ICircle {
     @Override
     public void move(final IVector v) {
         mid.move(v);
-        notifyUpdate();
+        updateBoundingBox();
     }
 
     @Override
     public void rotate(final IPoint pivot, final double radian) {
         mid.rotate(pivot, radian);
-        notifyUpdate();
+        updateBoundingBox();
     }
 
     @Override

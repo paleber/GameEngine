@@ -1,21 +1,7 @@
 package demo.old;
 
-import geo_old.ICircle;
-import geo_old.ILine;
-import geo_old.IPoint;
-import geo_old.IPolygon;
-import geo_old.IVector;
-import geo.imp.imp4.GeoModule;
 
-import java.util.Iterator;
-
-import time.tpf.ITpfCounter;
-import collision.Collision;
-import collision.IBoundingBox;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
+/*
 public class Ball implements IBall {
 
     private static final Injector INJECTOR = Guice
@@ -125,4 +111,4 @@ public class Ball implements IBall {
         return circle;
     }
 
-}
+}*/

@@ -2,153 +2,173 @@ package geo.imp;
 
 import geo.ILine;
 import geo.IPoint;
-import geo.imp.imp2.Point;
-import geo.imp.imp2.Polygon;
-import geo.imp.imp2.Vector;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+/**
+ * Tests for Point.
+ */
 public class PolygonTest {
 
     private static final double DELTA = 1e-9;
 
-    static {
-        // Remove setup in tests
-        new Polygon();
+    @Test
+    public void testValueConstructor() {
+        Point p = new Point(1, 2);
+        Point q = new Point(3, 4);
+        Point r = new Point(5, 6);
+        Polygon poly = new Polygon(p, q, r);
+
+        assertEquals(3, poly.getNumberElements());
+        assertEquals(p, poly.getPoint(0));
+        assertEquals(q, poly.getPoint(1));
+        assertEquals(r, poly.getPoint(2));
     }
 
     @Test
-    public void testAddPoint() {
-        Polygon poly = new Polygon();
-        poly.addPoint(2, 1);
-        poly.addPoint(3, 5);
-        Vector v = new Vector();
-        v.init(2, 3);
-        poly.addPoint(v);
+    public void testCopyConstructor() {
+        Point p = new Point(2, 3);
+        Point q = new Point(4, 5);
+        Point r = new Point(6, 7);
+        Polygon poly = new Polygon(new Polygon(p, q, r));
 
-        int i = 0;
-        for (IPoint p : poly.iteratePoints()) {
-            if (i == 0) {
-                assertEquals(2, p.getX(), DELTA);
-                assertEquals(1, p.getY(), DELTA);
-            } else if (i == 1) {
-                assertEquals(3, p.getX(), DELTA);
-                assertEquals(5, p.getY(), DELTA);
-            } else {
-                assertEquals(5, p.getX(), DELTA);
-                assertEquals(8, p.getY(), DELTA);
-            }
-            i++;
-        }
+        assertEquals(3, poly.getNumberElements());
+        assertEquals(2, poly.getPoint(0).getX(), DELTA);
+        assertEquals(3, poly.getPoint(0).getY(), DELTA);
+        assertEquals(4, poly.getPoint(1).getX(), DELTA);
+        assertEquals(5, poly.getPoint(1).getY(), DELTA);
+        assertEquals(6, poly.getPoint(2).getX(), DELTA);
+        assertEquals(7, poly.getPoint(2).getY(), DELTA);
     }
 
     @Test
-    public void testCopy() {
-        Polygon poly = new Polygon();
-        poly.addPoint(1, 2);
-        poly.addPoint(7, 8);
-        poly.addPoint(6, 5);
+    public void testPathConstructor() {
+        Point p = new Point(1, 1);
+        Vector v = new Vector(2, 0);
+        Vector u = new Vector(1, 4);
+        Polygon poly = new Polygon(p, v, u);
 
-        Polygon copy = new Polygon();
-        copy.copy(poly);
-
-        int i = 0;
-        for (IPoint p : copy.iteratePoints()) {
-            if (i == 0) {
-                assertEquals(1, p.getX(), DELTA);
-                assertEquals(2, p.getY(), DELTA);
-            } else if (i == 1) {
-                assertEquals(7, p.getX(), DELTA);
-                assertEquals(8, p.getY(), DELTA);
-            } else {
-                assertEquals(6, p.getX(), DELTA);
-                assertEquals(5, p.getY(), DELTA);
-            }
-            i++;
-        }
+        assertEquals(3, poly.getNumberElements());
+        assertEquals(p, poly.getPoint(0));
+        assertEquals(3, poly.getPoint(1).getX(), DELTA);
+        assertEquals(1, poly.getPoint(1).getY(), DELTA);
+        assertEquals(4, poly.getPoint(2).getX(), DELTA);
+        assertEquals(5, poly.getPoint(2).getY(), DELTA);
     }
 
     @Test
-    public void testBoundingBox() {
-        Polygon poly = new Polygon();
-        poly.addPoint(8, 3);
-        poly.addPoint(4, 7);
-        poly.addPoint(5, 4);
+    public void testGetXYMinMax() {
+        Point p = new Point(5, 3);
+        Point q = new Point(4, 5);
+        Point r = new Point(6, 4);
+        Polygon poly = new Polygon(p, q, r);
 
         assertEquals(4, poly.getXMin(), DELTA);
-        assertEquals(8, poly.getXMax(), DELTA);
+        assertEquals(6, poly.getXMax(), DELTA);
         assertEquals(3, poly.getYMin(), DELTA);
-        assertEquals(7, poly.getYMax(), DELTA);
+        assertEquals(5, poly.getYMax(), DELTA);
+    }
 
+    @Test
+    public void testGetLine() {
+        Point p = new Point(0, 0);
+        Point q = new Point(1, 0);
+        Point r = new Point(1, 1);
+        Polygon poly = new Polygon(p, q, r);
 
-        Vector v = new Vector();
-        v.init(1, 1);
+        assertEquals(1, poly.getLine(2).getStart().getX(), DELTA);
+        assertEquals(1, poly.getLine(2).getStart().getY(), DELTA);
+        assertEquals(0, poly.getLine(2).getEnd().getX(), DELTA);
+        assertEquals(0, poly.getLine(2).getEnd().getY(), DELTA);
+    }
 
+    @Test
+    public void move() {
+        Point p = new Point(0, 0);
+        Point q = new Point(1, 0);
+        Point r = new Point(1, 1);
+        Polygon poly = new Polygon(p, q, r);
+
+        Vector v = new Vector(2, 3);
         poly.move(v);
 
-        assertEquals(5, poly.getXMin(), DELTA);
-        assertEquals(9, poly.getXMax(), DELTA);
-        assertEquals(4, poly.getYMin(), DELTA);
-        assertEquals(8, poly.getYMax(), DELTA);
+        assertEquals(3, poly.getPoint(2).getX(), DELTA);
+        assertEquals(4, poly.getPoint(2).getY(), DELTA);
     }
 
     @Test
     public void testRotate() {
-        Polygon poly = new Polygon();
-        poly.addPoint(0, 0);
-        poly.addPoint(1, 2);
-        poly.addPoint(1, 1);
+        Point p = new Point(0, 0);
+        Point q = new Point(1, 2);
+        Point r = new Point(1, 1);
+        Polygon poly = new Polygon(p, q, r);
 
         Point pivot = new Point(0, 0);
         poly.rotate(pivot, Math.PI);
 
-        int i = 0;
-        for (IPoint p : poly.iteratePoints()) {
-            if (i == 1) {
-                assertEquals(-1, p.getX(), DELTA);
-                assertEquals(-2, p.getY(), DELTA);
+        assertEquals(-1, poly.getPoint(1).getX(), DELTA);
+        assertEquals(-2, poly.getPoint(1).getY(), DELTA);
+    }
+
+    @Test
+    public void testPointIterator() {
+        Polygon poly = new Polygon(new Point(0, 0), new Point(1, 2), new Point(3, 3));
+
+        for(int i = 0; i < 2; i++) {
+            int index = 0;
+            for(IPoint p: poly.iteratePoints()) {
+                assertEquals(poly.getPoint(index), p);
+                index++;
             }
-            i++;
+        }
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testPointIteratorNoSuchElementException() {
+        Polygon poly = new Polygon(new Point(0, 0), new Point(1, 2), new Point(3, 3));
+
+        Iterator<IPoint> it = poly.iteratePoints().iterator();
+        for(int i = 0; i < 4; i++) {
+            it.next();
+        }
+    }
+
+    @Test
+    public void testLineIterator() {
+        Polygon poly = new Polygon(new Point(0, 0), new Point(1, 2), new Point(3, 3));
+
+        for(int i = 0; i < 2; i++) {
+            int index = 0;
+            for(ILine l: poly.iterateLines()) {
+                assertEquals(poly.getLine(index), l);
+                index++;
+            }
+        }
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testLineIteratorNoSuchElementException() {
+        Polygon poly = new Polygon(new Point(0, 0), new Point(1, 2), new Point(3, 3));
+
+        Iterator<ILine> it = poly.iterateLines().iterator();
+        for(int i = 0; i < 4; i++) {
+            it.next();
         }
     }
 
     @Test
     public void testToString() {
-        Polygon poly = new Polygon();
-        poly.addPoint(0, 1);
-        poly.addPoint(2, 3);
-        poly.addPoint(4, 5);
-        assertEquals("<(0.000|1.000)(2.000|3.000)(4.000|5.000)>", poly.toString());
+        Point p = new Point(0, 0);
+        Point q = new Point(1, 0);
+        Point r = new Point(1, 1);
+        Polygon poly = new Polygon(p, q, r);
+
+        assertEquals("<(0.000|0.000)(1.000|0.000)(1.000|1.000)>", poly.toString());
     }
 
-
-    @Test
-    public void testLines() {
-        Polygon poly = new Polygon();
-        poly.addPoint(0, 0);
-        poly.addPoint(1, 1);
-        poly.addPoint(2, 3);
-
-        int i = 0;
-        for (ILine l : poly.iterateLines()) {
-            if (i == 0) {
-                assertEquals(0, l.getStart().getX(), DELTA);
-                assertEquals(0, l.getStart().getY(), DELTA);
-                assertEquals(1, l.getEnd().getX(), DELTA);
-                assertEquals(1, l.getEnd().getY(), DELTA);
-            } else if (i == 1) {
-                assertEquals(1, l.getStart().getX(), DELTA);
-                assertEquals(1, l.getStart().getY(), DELTA);
-                assertEquals(2, l.getEnd().getX(), DELTA);
-                assertEquals(3, l.getEnd().getY(), DELTA);
-            } else {
-                assertEquals(2, l.getStart().getX(), DELTA);
-                assertEquals(3, l.getStart().getY(), DELTA);
-                assertEquals(0, l.getEnd().getX(), DELTA);
-                assertEquals(0, l.getEnd().getY(), DELTA);
-            }
-            i++;
-        }
-    }
 }

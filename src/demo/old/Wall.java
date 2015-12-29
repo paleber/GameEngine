@@ -1,5 +1,6 @@
 package demo.old;
 
+/*
 import java.util.Iterator;
 
 import geo_old.IPoint;
@@ -68,3 +69,4 @@ public class Wall implements IWall {
     }
 
 }
+*/

@@ -1,5 +1,6 @@
 package demo.hexagon_field;
 
+/*
 import java.awt.Color;
 import java.util.Random;
 
@@ -40,7 +41,7 @@ public class TestFrame2 {
 		}
 
 		IPolygon poly = INJECTOR.getInstance(IPolygon.class);
-		poly.initWithPoints(p); */
+		poly.initWithPoints(p); *
 			
 		BoardBuilder builder = new BoardBuilder();
 		builder.build(BoardBuilder.Shape.Hexagon, 2, 1);
@@ -62,7 +63,7 @@ public class TestFrame2 {
 			polys1[i].move(v);
 			content.addShape(polys1[i], Color.CYAN);
 			v.rotate(Math.PI / 3);
-		} */
+		}
 		
 		
 		
@@ -88,3 +89,4 @@ public class TestFrame2 {
 	
 	
 }
+*/

@@ -9,7 +9,7 @@ import geo.IPoint;
 /**
  * Implementation of Line.
  */
-public class Line extends AbstractBoundingBox implements ILine {
+final class Line extends BoundingBox implements ILine {
 
     private final Point start, end;
 

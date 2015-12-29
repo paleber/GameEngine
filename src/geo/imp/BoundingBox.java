@@ -6,12 +6,12 @@ import geo.IPoint;
 /**
  * Abstract class for BoundingBox.
  */
-abstract class AbstractBoundingBox implements IBoundingBox {
+abstract class BoundingBox implements IBoundingBox {
 
     private double xMin, xMax, yMin, yMax;
     private boolean doUpdate = true;
 
-    void notifyUpdate() {
+    void updateBoundingBox() {
         doUpdate = true;
     }
 
