@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 /**
  * Tests for Point.
@@ -59,6 +58,48 @@ public class PolygonTest {
         assertEquals(1, poly.getPoint(1).getY(), DELTA);
         assertEquals(4, poly.getPoint(2).getX(), DELTA);
         assertEquals(5, poly.getPoint(2).getY(), DELTA);
+    }
+
+    @Test
+    public void testLineConstructor() {
+        Point p = new Point(1, 2);
+        Point q = new Point(2, 5);
+        Point r = new Point(7, 3);
+
+        Line l1 = new Line(p, q);
+        Line l2 = new Line(q, r);
+        Line l3 = new Line(r, p);
+
+        Polygon poly = new Polygon(l1, l3, l2);
+        assertEquals(p, poly.getPoint(0));
+        assertEquals(q, poly.getPoint(1));
+        assertEquals(r, poly.getPoint(2));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testLineConstructorIllegalArgumentException1() {
+        Point p = new Point(1, 2);
+        Point q = new Point(2, 5);
+        Point r = new Point(7, 3);
+
+        Line l1 = new Line(p, q);
+        Line l2 = new Line(p, r);
+        Line l3 = new Line(r, p);
+
+        new Polygon(l1, l2, l3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testLineConstructorIllegalArgumentException2() {
+        Point p = new Point(1, 2);
+        Point q = new Point(2, 5);
+        Point r = new Point(7, 3);
+
+        Line l1 = new Line(p, q);
+        Line l2 = new Line(q, r);
+        Line l3 = new Line(r, new Point(1, 1));
+
+        new Polygon(l1, l2, l3);
     }
 
     @Test

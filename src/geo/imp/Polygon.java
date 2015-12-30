@@ -8,7 +8,9 @@ import geo.IPoint;
 import geo.IPolygon;
 import geo.IVector;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -88,6 +90,45 @@ final class Polygon extends BoundingBox implements IPolygon {
         }
         lines = new Line[points.length];
         initLines();
+        addAsParent();
+    }
+
+    @AssistedInject
+    Polygon(@Assisted final ILine... lines) {
+
+
+        List<Line> list = new ArrayList<>();
+        for(ILine l: lines) {
+            list.add((Line) l);
+        }
+
+        points = new Point[lines.length];
+        this.lines = new Line[lines.length];
+
+        points[0] = (Point) list.get(0).getStart();
+        for(int i = 0; i < lines.length - 1; i++) {
+            boolean found = false;
+            for (Line l: list) {
+                IPoint p = l.getOtherPoint(points[i]);
+                if (p != null) {
+                    this.points[i + 1] = (Point) p;
+                    this.lines[i] = l;
+                    list.remove(l);
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        if(list.get(0).getOtherPoint(points[0]) != points[points.length-1]) {
+            throw new IllegalArgumentException();
+        }
+
+        lines[lines.length - 1] = list.get(0);
         addAsParent();
     }
 

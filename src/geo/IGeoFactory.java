@@ -103,6 +103,14 @@ public interface IGeoFactory {
     IPolygon createPolygon(IPoint p, IVector... v);
 
     /**
+     * Create a polygon by with edge-lines.
+     *
+     * @param l edges
+     * @return created polygon
+     */
+    IPolygon createPolygon(ILine... l);
+
+    /**
      * Copy a polygon.
      *
      * @param poly polygon to copy

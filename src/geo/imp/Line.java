@@ -63,6 +63,17 @@ final class Line extends BoundingBox implements ILine {
     }
 
     @Override
+    public IPoint getOtherPoint(IPoint p) {
+        if (p == start) {
+            return end;
+        }
+        if (p == end) {
+            return start;
+        }
+        return null;
+    }
+
+    @Override
     public String toString() {
         return "<" + start + end + ">";
     }

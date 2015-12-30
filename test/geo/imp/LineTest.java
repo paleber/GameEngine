@@ -3,6 +3,7 @@ package geo.imp;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests for Line.
@@ -48,6 +49,16 @@ public class LineTest {
         assertEquals(7, l.getXMax(), DELTA);
         assertEquals(3, l.getYMin(), DELTA);
         assertEquals(6, l.getYMax(), DELTA);
+    }
+
+    @Test
+    public void testGetOtherPoint() {
+        Point s = new Point(2, 3);
+        Point e = new Point(4, 5);
+        Line l = new Line(s, e);
+        assertEquals(s, l.getOtherPoint(e));
+        assertEquals(e, l.getOtherPoint(s));
+        assertNull(l.getOtherPoint(new Point(0, 0)));
     }
 
     @Test
