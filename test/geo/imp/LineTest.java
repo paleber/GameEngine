@@ -62,6 +62,28 @@ public class LineTest {
     }
 
     @Test
+    public void replacePoint() {
+        Point p = new Point(0, 0);
+        Point q = new Point(1, 1);
+        Point r = new Point(2, 2);
+
+        Line l = new Line(p, q);
+        l.replacePoint(p, r);
+        assertEquals(r, l.getStart());
+        assertEquals(q, l.getEnd());
+
+        l = new Line(p, q);
+        l.replacePoint(q, r);
+        assertEquals(p, l.getStart());
+        assertEquals(r, l.getEnd());
+
+        l = new Line(p, q);
+        l.replacePoint(new Point(3, 3), r);
+        assertEquals(p, l.getStart());
+        assertEquals(q, l.getEnd());
+    }
+
+    @Test
     public void toStringTest() {
         Line l = new Line(new Point(1, 2), new Point(4, 3));
         assertEquals("<(1.000|2.000)(4.000|3.000)>", l.toString());

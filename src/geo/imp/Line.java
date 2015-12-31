@@ -11,7 +11,7 @@ import geo.IPoint;
  */
 final class Line extends BoundingBox implements ILine {
 
-    private final Point start, end;
+    private Point start, end;
 
     @AssistedInject
     Line(@Assisted("s") final IPoint start, @Assisted("e") final IPoint end) {
@@ -73,10 +73,24 @@ final class Line extends BoundingBox implements ILine {
         return null;
     }
 
+    void replacePoint(final Point oldPoint, final Point newPoint) {
+        if(start == oldPoint) {
+            start.removeParent(this);
+            start = newPoint;
+            start.addParent(this);
+        } else if (end == oldPoint) {
+            end.removeParent(this);
+            end = newPoint;
+            end.addParent(this);
+        }
+    }
+
     @Override
     public String toString() {
         return "<" + start + end + ">";
     }
+
+
 
     /*
     private final Iterable<IPoint> pointIterator =  () -> new Iterator<IPoint>() {

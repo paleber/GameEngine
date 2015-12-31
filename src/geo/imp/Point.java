@@ -79,11 +79,10 @@ final class Point implements IPoint {
         parents.add(parent);
     }
 
-    /*
-    void removeParent(AbstractBoundingBox parent) {
+    void removeParent(BoundingBox parent) {
         parents.remove(parent);
+        System.out.println(parents.size());
     }
-    */
 
     private void notifyParents() {
         parents.forEach(BoundingBox::updateBoundingBox);

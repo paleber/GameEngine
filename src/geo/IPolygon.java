@@ -42,4 +42,13 @@ public interface IPolygon extends IMovable, IBoundingBox {
      */
     Iterable<ILine> iterateLines();
 
+
+    /**
+     * Merge the points with same coordinates and lines with same points of two
+     * Polygons. Elements of this Polygon are replaced.
+     *
+     * @param other other Polygon
+     * @param delta maximal distance for merging two points
+     */
+    void mergePointsAndLines(IPolygon other, double delta);
 }

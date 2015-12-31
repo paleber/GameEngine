@@ -60,11 +60,22 @@ public class PointTest {
     }
 
     @Test
-    public void testParents() {
+    public void testAddParents() {
         Point mid = new Point(7, 5);
         Circle c = new Circle(mid, 1);
-        c.move(new Vector(1, -2));
+        mid.move(new Vector(1, -2));
         assertEquals(c.getXMax(), 9, DELTA);
+    }
+
+    @Test
+    public void testRemoveParents() {
+        Point mid = new Point(7, 5);
+        Circle c = new Circle(mid, 1);
+        c.getXMin();
+        mid.removeParent(c);
+        assertEquals(c.getXMax(), 8, DELTA);
+        mid.move(new Vector(1, -2));
+        assertEquals(c.getXMax(), 8, DELTA);
     }
 
     @Test

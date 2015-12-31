@@ -98,7 +98,7 @@ final class Polygon extends BoundingBox implements IPolygon {
 
 
         List<Line> list = new ArrayList<>();
-        for(ILine l: lines) {
+        for (ILine l : lines) {
             list.add((Line) l);
         }
 
@@ -106,9 +106,9 @@ final class Polygon extends BoundingBox implements IPolygon {
         this.lines = new Line[lines.length];
 
         points[0] = (Point) list.get(0).getStart();
-        for(int i = 0; i < lines.length - 1; i++) {
+        for (int i = 0; i < lines.length - 1; i++) {
             boolean found = false;
-            for (Line l: list) {
+            for (Line l : list) {
                 IPoint p = l.getOtherPoint(points[i]);
                 if (p != null) {
                     this.points[i + 1] = (Point) p;
@@ -119,12 +119,12 @@ final class Polygon extends BoundingBox implements IPolygon {
                 }
             }
 
-            if(!found) {
+            if (!found) {
                 throw new IllegalArgumentException();
             }
         }
 
-        if(list.get(0).getOtherPoint(points[0]) != points[points.length-1]) {
+        if (list.get(0).getOtherPoint(points[0]) != points[points.length - 1]) {
             throw new IllegalArgumentException();
         }
 
@@ -219,6 +219,34 @@ final class Polygon extends BoundingBox implements IPolygon {
     @Override
     public Iterable<ILine> iterateLines() {
         return lineIterator;
+    }
+
+    @Override
+    public void mergePointsAndLines(IPolygon other, double delta) {
+
+        // Replace points
+        for (int i = 0; i < points.length; i++) {
+            for (IPoint p : other.iteratePoints()) {
+                if (points[i].squareDistanceTo(p) < delta * delta) {
+                    for (Line l: lines) {
+                        l.replacePoint(points[i], (Point) p);
+                    }
+                    points[i].removeParent(this);
+                    points[i] = (Point) p;
+                    points[i].addParent(this);
+                    break;
+                }
+            }
+        }
+
+        // Replace lines
+        for (int i = 0; i < lines.length; i++) {
+            for (ILine l: other.iterateLines()) {
+                if (lines[i].getOtherPoint(l.getStart()) == l.getEnd()) {
+                    lines[i] = (Line) l;
+                }
+            }
+        }
     }
 
     @Override

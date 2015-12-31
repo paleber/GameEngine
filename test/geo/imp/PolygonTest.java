@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Tests for Point.
@@ -201,6 +202,31 @@ public class PolygonTest {
             it.next();
         }
     }
+
+    @Test
+    public void testMergePointsAndLines() {
+        Point p = new Point(1, 1);
+        Point q = new Point(2, 2);
+        Point r = new Point(3, 3);
+
+        Point s = new Point(4, 4);
+        Point q2 = new Point(2, 2);
+        Point r2 = new Point(3, 3);
+
+        Polygon poly1 = new Polygon(p, q, r);
+        Polygon poly2 = new Polygon(s, q2, r2);
+
+        poly2.mergePointsAndLines(poly1, DELTA);
+
+        assertNotEquals(p, poly2.getPoint(0));
+        assertEquals(q, poly2.getPoint(1));
+        assertEquals(r, poly2.getPoint(2));
+
+        assertNotEquals(poly1.getLine(0), poly2.getLine(0));
+        assertEquals(poly1.getLine(1), poly2.getLine(1));
+        assertNotEquals(poly1.getLine(2), poly2.getLine(2));
+    }
+
 
     @Test
     public void testToString() {
