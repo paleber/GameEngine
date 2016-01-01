@@ -81,7 +81,6 @@ final class Point implements IPoint {
 
     void removeParent(BoundingBox parent) {
         parents.remove(parent);
-        System.out.println(parents.size());
     }
 
     private void notifyParents() {
