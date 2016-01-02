@@ -96,7 +96,6 @@ final class Polygon extends BoundingBox implements IPolygon {
     @AssistedInject
     Polygon(@Assisted final ILine... lines) {
 
-
         List<Line> list = new ArrayList<>();
         for (ILine l : lines) {
             list.add((Line) l);
@@ -247,6 +246,26 @@ final class Polygon extends BoundingBox implements IPolygon {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean contains(IPoint p) {
+        for (IPoint q: points) {
+            if (p == q) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(ILine l) {
+        for (ILine k: lines) {
+            if (l == k) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

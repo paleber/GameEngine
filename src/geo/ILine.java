@@ -29,6 +29,12 @@ public interface ILine extends IBoundingBox {
      */
     IPoint getOtherPoint(IPoint p);
 
+    /** Check if the line contains the point.
+     * @param p point
+     * @return true if the line contains the point
+     */
+    boolean contains(IPoint p);
+
     // Iterable
 
 }

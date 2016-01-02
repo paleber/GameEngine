@@ -7,8 +7,10 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for Point.
@@ -227,6 +229,35 @@ public class PolygonTest {
         assertNotEquals(poly1.getLine(2), poly2.getLine(2));
     }
 
+
+    @Test
+    public void testContainsPoint() {
+        Point p = new Point(0, 0);
+
+        Polygon poly = new Polygon(p, new Point(1, 1), new Point(2, 2));
+        assertTrue(poly.contains(p));
+
+        poly = new Polygon(new Point(1, 1), new Point(2, 2), p);
+        assertTrue(poly.contains(p));
+
+        poly = new Polygon(new Point(0, 0), new Point(1, 1), new Point(2, 2));
+        assertFalse(poly.contains(p));
+    }
+
+    @Test
+    public void testContainsLine() {
+        Point p = new Point(0, 0);
+        Point q = new Point(1, 2);
+        Point r = new Point(2, 1);
+
+        Line l = new Line(p, q);
+        Line k = new Line(q, r);
+        Line m = new Line(r, p);
+
+        Polygon poly = new Polygon(l, k, m);
+        assertTrue(poly.contains(l));
+        assertFalse(poly.contains(new Line(r, q)));
+    }
 
     @Test
     public void testToString() {

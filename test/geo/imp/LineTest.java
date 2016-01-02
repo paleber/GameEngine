@@ -2,8 +2,10 @@ package geo.imp;
 
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for Line.
@@ -81,6 +83,20 @@ public class LineTest {
         l.replacePoint(new Point(3, 3), r);
         assertEquals(p, l.getStart());
         assertEquals(q, l.getEnd());
+    }
+
+    @Test
+    public void testContainsPoint() {
+        Point p = new Point(0, 0);
+
+        Line l = new Line(p, new Point(1, 1));
+        assertTrue(l.contains(p));
+
+        l = new Line(new Point(1, 1), p);
+        assertTrue(l.contains(p));
+
+        l = new Line(new Point(1, 1), new Point(2, 2));
+        assertFalse(l.contains(p));
     }
 
     @Test

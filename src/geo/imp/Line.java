@@ -73,6 +73,11 @@ final class Line extends BoundingBox implements ILine {
         return null;
     }
 
+    @Override
+    public boolean contains(IPoint p) {
+        return end == p || start == p;
+    }
+
     void replacePoint(final Point oldPoint, final Point newPoint) {
         if(start == oldPoint) {
             start.removeParent(this);
